@@ -10,6 +10,23 @@
   </head>
 
   <body>
+    <div>
+      <%= link_to "Home", root_path %>
+      <%= link_to "Rules", "/rules" %>
+      <%= link_to "Forum", "/forum" %>
+      <%= link_to "Members", "/members" %>
+
+      <% if logged_in? %>
+        <%= link_to "Profile", "/account" %>
+        <%= link_to "Logout", "/logout" %>
+        <% if admin? %>
+          <%= link_to "Admin", '/admin' %>
+        <% end %>
+      <% else %>
+        <%= link_to "Login", "/login" %>
+        <%= link_to "Register", "/signup" %>
+      <% end %>
+    </div>
     <%= yield %>
   </body>
 </html>
