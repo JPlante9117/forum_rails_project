@@ -6,12 +6,12 @@ Rails.application.routes.draw do
   namespace "admin" do
     resources :boards, only: [:new, :create, :edit, :update]
   end
-  resources :boards, only: [:index, :show] do
-    resources :board_threads, only: [:index, :show,] do
-      resources :posts, only: [:new, :create, :update, :edit]
-    end
+  resources :boards, only: [:index, :show]
+  resources :board_threads, only: [:index, :show,] do
+    resources :posts, only: [:new, :create, :update, :edit]
   end
-  resources :users
+  resources :users, only: [:index, :create, :edit, :update, :show], param: :slug
+  get '/signup' => 'users#new', as: 'signup'
   get '/login' => 'sessions#new', as: 'login'
   post '/session' => 'sessions#create', as: 'session'
   get '/logout' => 'sessions#destroy', as: 'logout'

@@ -12,4 +12,10 @@ class ApplicationController < ActionController::Base
     def admin?
         current_user.admin
     end
+
+    def redirect_if_logged_out
+        if !logged_in?
+            redirect_to root_path
+        end
+    end
 end
