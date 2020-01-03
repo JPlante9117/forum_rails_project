@@ -22,4 +22,8 @@ class User < ApplicationRecord
 
     has_many :posts
     has_many :board_threads, through: :posts
+
+    def slug
+        self.username.gsub(" ", "-")
+    end
 end

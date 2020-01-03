@@ -14,10 +14,10 @@
       <%= link_to "Home", root_path %>
       <%= link_to "Rules", "/rules" %>
       <%= link_to "Forum", "/forum" %>
-      <%= link_to "Members", "/members" %>
+      <%= link_to "Members", "/users" %>
 
       <% if logged_in? %>
-        <%= link_to "Profile", "/account" %>
+        <%= link_to "Profile", "/users/#{current_user.slug}" %>
         <%= link_to "Logout", "/logout" %>
         <% if admin? %>
           <%= link_to "Admin", '/admin' %>

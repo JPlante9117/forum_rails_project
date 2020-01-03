@@ -1,0 +1,10 @@
+<h1><%= @user.username %></h1>
+Karma: <%= @user.karma %>
+                            <% if current_user != @user %>
+                                <%= link_to "Add Karma", root_path %>
+                            <% end %>
+
+<hr>
+<% if @user == current_user %>
+<%= button_to "Edit Profile", edit_user_path(@user) %>
+<% end %>

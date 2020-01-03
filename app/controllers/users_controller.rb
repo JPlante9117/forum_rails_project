@@ -16,7 +16,12 @@ class UsersController < ApplicationController
 
     def show
         redirect_if_logged_out
-        @user = User.find_by_id(params[:id])
+        @user = User.find_by(username: params[:slug])
+    end
+
+    def edit
+        @user = User.find_by_id(current_user.id)
+        #validate_user
     end
 
     private
