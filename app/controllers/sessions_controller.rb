@@ -5,13 +5,23 @@ class SessionsController < ApplicationController
     end
     
     def create
-        @user = User.find_or_create_by(uid: auth['uid']) do |u|
-            u.username = auth['info']['name']
+
+        if params[:username]
+            user = User.find_by(username: params[:username])
+            unless user && user.authenticate(params[:password])
+                render 'new'
+            end
+        else
+            user = User.find_or_create_by(id: auth['uid']) do |u|
+                u.username = auth['info']['name']
+                raise auth.inspect
+            end
+            user.save(:validate => false)
         end
 
-        session[:user_id] = @user.id
+        session[:user_id] = user.id
 
-        render root_path
+        redirect_to root_path
     end
 
     def destroy

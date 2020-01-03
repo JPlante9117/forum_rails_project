@@ -5,21 +5,7 @@ class BoardsController < ApplicationController
     end
 
     def show
-    end
-
-    def new
-    end
-    
-    def create
-    end
-
-    def edit
-    end
-
-    def update
-    end
-
-    def destroy
+        @board = Board.find_by_id(params[:id])
     end
     
 end

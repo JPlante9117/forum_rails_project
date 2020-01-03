@@ -27,4 +27,5 @@ module UsersHelper
         REQS
         requirements.html_safe
     end
+
 end
