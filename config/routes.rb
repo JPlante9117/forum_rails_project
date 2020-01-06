@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   end
   resources :boards, only: [:index, :show]
   resources :board_threads, only: [:show, :new, :create, :delete], :path => "threads"  do
-    resources :posts, only: [:new, :create, :update, :edit]
+    resources :posts
   end
   resources :users, only: [:index, :create, :edit, :update, :show], param: :slug
   get '/signup' => 'users#new', as: 'signup'

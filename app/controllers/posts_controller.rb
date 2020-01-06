@@ -1,13 +1,12 @@
 class PostsController < ApplicationController
     def new
-        # raise params.inspect
         @board_thread = BoardThread.find_by_id(params[:board_thread_id])
-        @post = @board_thread.posts.build
+        @post = Post.new(board_thread_id: @board_thread.id)
     end
 
     def create
         post = Post.create(post_params)
-        raise post.inspect
+        redirect_to board_thread_path(post.board_thread)
     end
 
     def edit
