@@ -1,0 +1,15 @@
+<%= form_for @board_thread do |f| %>
+    <%= f.label :title %><br>
+    <%= f.text_field :title %>
+<br><br>
+    <%= f.fields_for :posts do |pf| %>
+        <%= pf.label :content %><br>
+        <%= pf.text_area :content, rows: 10, cols: 60 %>
+        <%= pf.hidden_field :user_id, value: current_user.id %>
+    <% end %>
+<br>
+    <%= f.hidden_field :board_id, value: @board.id %>
+    <%= f.submit "Create Thread" %>
+<% end %>
+
+<%= params %>

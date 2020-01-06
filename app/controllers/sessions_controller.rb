@@ -14,9 +14,8 @@ class SessionsController < ApplicationController
         else
             user = User.find_or_create_by(id: auth['uid']) do |u|
                 u.username = auth['info']['name']
-                raise auth.inspect
+                u.password = SecureRandom.base64
             end
-            user.save(:validate => false)
         end
 
         session[:user_id] = user.id

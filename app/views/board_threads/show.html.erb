@@ -1,0 +1,7 @@
+<h1><%= @board_thread.title %></h1>
+<% @board_thread.posts.each do |p| %>
+    <%= p.content %> - by <%= p.user.username %>
+    <hr>
+<% end %>
+<hr>
+<%= link_to "New Post", new_board_thread_post_path(board_thread_id: params[:id]) %>

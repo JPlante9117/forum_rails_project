@@ -1,0 +1,6 @@
+<%= form_for @post do |pf| %>
+    <%= pf.label :content %><br>
+    <%= pf.text_area :content, rows: 10, cols: 60 %>
+    <%= pf.hidden_field :user_id, value: current_user.id %>
+    <%= pf.submit "Post" %>
+<% end %>
