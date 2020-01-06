@@ -1,5 +1,9 @@
-class Admin::BoardsController < ApplicationController
+class Admin::BoardsController < AdminController
   
+    def index
+        @boards = Board.all
+    end
+
     def new
         @board = Board.new
     end

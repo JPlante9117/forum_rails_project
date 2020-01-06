@@ -20,7 +20,7 @@
         <%= link_to "Profile", "/users/#{current_user.slug}" %>
         <%= link_to "Logout", "/logout" %>
         <% if admin? %>
-          <%= link_to "Admin", '/admin' %>
+          <%= link_to "Admin", '/admin/boards' %>
         <% end %>
       <% else %>
         <%= link_to "Login", "/login" %>

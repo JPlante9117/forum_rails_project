@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-    helper_method :logged_in?, :current_user, :admin?
+    helper_method :logged_in?, :current_user, :require_admin, :admin?
 
     def logged_in?
         session[:user_id] ? true : false
@@ -20,7 +20,7 @@ class ApplicationController < ActionController::Base
     end
 
     def require_admin
-        if !current_user.admin
+        unless current_user && current_user.admin
             redirect_to root_path
         end
     end

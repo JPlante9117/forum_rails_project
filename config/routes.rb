@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   root to: 'static#home'
   get '/rules' => 'static#rules', as: 'rules'
   namespace "admin" do
-    resources :boards, only: [:new, :create, :edit, :update]
+    resources :boards, only: [:index, :new, :create, :edit, :update]
   end
   resources :boards, only: [:index, :show]
   resources :board_threads, only: [:index, :show,] do
