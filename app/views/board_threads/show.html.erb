@@ -1,7 +1,16 @@
 <h1><%= @board_thread.title %></h1>
 <% @board_thread.posts.each do |p| %>
-    <%= p.content %> - by <%= p.user.username %>
+    <%= p.content.html_safe %> - by <%= p.user.username %>
     <hr>
 <% end %>
+QUICK REPLY
+
+<%= form_for @board_thread.posts.build, :url => board_thread_posts_path(@board_thread) do |f| %>
+    <%= f.text_area :content, cols: 60, rows: 10 %>
+    <%= f.hidden_field :user_id, value: current_user.id %>
+    <%= f.hidden_field :board_thread_id, value: @board_thread.id %>
+    <%= f.submit %>
+<% end %>
+
 <hr>
 <%= link_to "New Post", new_board_thread_post_path(board_thread_id: params[:id]) %>
