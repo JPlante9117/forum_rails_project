@@ -20,8 +20,20 @@ class UsersController < ApplicationController
     end
 
     def edit
-        @user = User.find_by_id(current_user.id)
-        #validate_user
+        @user = User.find_by(username: deslugger(params[:slug]))
+    end
+
+    def update
+        @user = User.find_by(id: params[:slug])
+        if params[:user][:password].blank? && params[:user][:password_confirmation].blank?
+            params[:user].delete(:password)
+            params[:user].delete(:password_confirmation)
+        end
+        if @user.update(user_params)
+            redirect_to user_path(@user)
+        else
+            render 'edit'
+        end
     end
 
     def index
@@ -31,6 +43,6 @@ class UsersController < ApplicationController
     private
 
     def user_params
-        params.require(:user).permit(:username, :password, :password_confirmation)
+        params.require(:user).permit(:username, :password, :password_confirmation, :admin)
     end
 end

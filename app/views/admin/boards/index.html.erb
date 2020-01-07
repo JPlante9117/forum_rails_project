@@ -1,1 +1,20 @@
-HELLO WORLD
+<table>
+<% @categories.each do |cat| %>
+    <tr>
+        <th>
+            Category: <%= cat.title %>
+        </th>
+    </tr>
+    <% cat.boards.order(:title).each do |b| %>
+        <tr>
+            <td>
+                <%= b.title %>
+                <%= button_to "Edit Board", edit_admin_board_path(b), :method => :get %> | 
+                <%= button_to "Delete Board", admin_board_path(b), :method => :delete, data: {confirm: "Are You Sure?"} %>
+            </td>
+        </tr> 
+    <% end %>
+<% end %>
+</table>
+<Br>
+<center><%= button_to "Create New Board", new_admin_board_path, :method => :get %></center>

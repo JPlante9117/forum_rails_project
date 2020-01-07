@@ -14,10 +14,80 @@
  *= require_self
  */
 
+ .navbar {
+    overflow: hidden;
+    background-color: #333;
+    position: fixed;
+    top: 0;
+    width: 100%; 
+  }
+
+  .navbar a {
+    float: left;
+    display: block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+  
+  .navbar a:hover {
+    background: #ddd;
+    color: black;
+  }
+  
+  .main {
+    margin-top: 70px;
+  }
+
  div.field_with_errors input{
      border: 2px solid red;
  }
 
+ div.field_with_errors select{
+  border: 2px solid red;
+}
+
  div.errors_list {
      color: red;
  }
+
+ .button_to {
+     display: inline;
+ }
+
+ blockquote {
+    background: #f9f9f9;
+    border-left: 10px solid #ccc;
+    margin: 1.5em 10px;
+    padding: 0.5em 10px;
+    quotes: "\201C""\201D""\2018""\2019";
+  }
+
+ blockquote.innerquote {
+    background: #f9f9f9;
+    border-left: 0px;
+    margin: 1.5em 10px;
+    padding: 0.5em 10px;
+    quotes: "\201C""\201D""\2018""\2019";
+ }
+
+ table {
+     border: 2px solid black;
+     margin-left: auto;
+     margin-right: auto;
+     width: 80%;
+ }
+
+ td {
+     border: 1px solid rgb(0, 0, 0);
+     padding: 5px 10px 5px 5px;
+}
+
+td.user_side {
+    width: 15%;
+}
+
+th.category {
+  text-align: left;
+}

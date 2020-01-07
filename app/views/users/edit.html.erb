@@ -1,0 +1,25 @@
+<div class="errors"><%= display_user_errors(@user).html_safe unless @user.errors.empty? %></div>
+
+<%= form_for @user do |u| %>
+    <%= u.label "Username" %> <span class="note"><%= u.label "required" %></span><br>
+    <%= errors_or_requirements(@user, "username") %><br>
+    <%= u.text_field :username, size: 50 %><br><br><br>
+
+    <%= u.label "Password" %> <span class="note"><%= u.label "required" %></span><br>
+    <%= errors_or_requirements(@user, "password") %><br>
+    <%= u.password_field :password, size: 50 %><br><br><br>
+
+
+    <%= u.label "Confirm Password" %> <span class="note"><%= u.label "required" %></span><br>
+    <%= errors_or_requirements(@user, "password_confirmation") %><br>
+    <%= u.password_field :password_confirmation, size: 50 %><br>
+    <br><br>
+
+    <% if admin? %>
+        <%= u.label "Administrator?" %>
+        <%= u.check_box :admin %>
+    <% end %>
+    <%= u.submit "Update Profile" %>
+<% end %>
+
+<%= params %>

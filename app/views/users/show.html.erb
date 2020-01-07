@@ -5,6 +5,6 @@ Karma: <%= @user.karma %>
                             <% end %>
 
 <hr>
-<% if @user == current_user %>
-<%= button_to "Edit Profile", edit_user_path(@user) %>
+<% if @user == current_user || admin? %>
+<%= button_to "Edit Profile", edit_user_path(slug: @user.slug), :method => :get %>
 <% end %>

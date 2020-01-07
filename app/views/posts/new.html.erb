@@ -1,6 +1,10 @@
 <%= form_for @post, :url => board_thread_posts_path(@board_thread)  do |pf| %>
     <%= pf.label :content %><br>
-    <%= pf.text_area :content, rows: 10, cols: 60 %>
+    <% if params[:quote] %>
+      <%= pf.text_area :content, rows: 10, cols: 60, value: quoted(params[:quote]) %>
+    <% else %>
+        <%= pf.text_area :content, rows: 10, cols: 60 %>
+    <% end %>
     <%= pf.hidden_field :user_id, value: current_user.id %>
     <%= pf.hidden_field :board_thread_id, value: @board_thread.id %>
     <br>

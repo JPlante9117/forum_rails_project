@@ -1,0 +1,10 @@
+<%= button_to "Create a New Category", new_admin_category_path, :method => :get %>
+<br>
+REORDER CATEGORY
+<br><br>
+<% Category.all.each do |cat| %>
+    <%= cat.title %>
+    <%= button_to "Edit Category", edit_admin_category_path(cat), :method => :get %> | 
+    <%= button_to "Delete Category", admin_category_path(cat), :method => :delete, data: {confirm: "Are You Sure?"} %>
+    <br>
+<% end %>

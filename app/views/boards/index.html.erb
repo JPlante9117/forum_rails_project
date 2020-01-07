@@ -1,3 +1,16 @@
-<% Board.all.each do |b| %>
-    <%= link_to b.title, board_path(b) %>
-<% end %>
+<table>
+    <% @categories.each do |c| %>
+        <tr>
+            <th class="category">
+                <%= c.title %>
+            </th>
+        </tr>
+        <% c.boards.order(:title).each do |b| %>
+            <tr>
+            <td>
+                <%= link_to b.title, board_path(b) %>
+            </td>
+            </tr>
+        <% end %>
+    <% end %>
+<table>

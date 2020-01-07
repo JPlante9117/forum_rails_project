@@ -1,6 +1,6 @@
 class BoardThreadsController < ApplicationController
     def new
-        @board = Board.find_by_id(params[:board])
+        @board = Board.find_by_id(params[:board_id])
         @board_thread = BoardThread.new
         @board_thread.posts.build
     end
@@ -18,7 +18,7 @@ class BoardThreadsController < ApplicationController
 
     def show
         @board_thread = BoardThread.find_by_id(params[:id])
-        @posts = @board_thread.posts
+        @posts = @board_thread.posts unless @board_thread.posts.empty?
     end
 
     def destroy
@@ -31,6 +31,10 @@ class BoardThreadsController < ApplicationController
         end
     end
 
+    def lock
+        swap_lock
+    end
+
     private
 
     def board_thread_params
@@ -39,6 +43,15 @@ class BoardThreadsController < ApplicationController
             :board_thread_id,
             :user_id
         ])
+    end
+
+    def swap_lock
+        @board_thread = BoardThread.find_by_id(params[:board_thread_id])
+        if admin?    
+            @board_thread.locked = !@board_thread.locked
+            @board_thread.save
+        end
+        redirect_to board_thread_path(@board_thread)
     end
 
 end

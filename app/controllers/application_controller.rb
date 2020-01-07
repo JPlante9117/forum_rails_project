@@ -28,4 +28,14 @@ class ApplicationController < ActionController::Base
     def deslugger(slug)
         slug.gsub("-", " ")
     end
+
+    def order_threads(board)
+        board.board_threads.sort_by do |thread|
+            if !thread.posts.empty?
+                thread.posts.last.created_at
+            else
+                DateTime.new
+            end
+        end.reverse!
+    end
 end

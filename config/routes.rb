@@ -5,8 +5,11 @@ Rails.application.routes.draw do
 
   root to: 'static#home'
   get '/rules' => 'static#rules', as: 'rules'
+  get '/admin' => 'admin#index'
   namespace "admin" do
-    resources :boards, only: [:index, :new, :create, :edit, :update]
+    resources :categories
+    resources :boards
+    resources :users
   end
   resources :boards, only: [:index, :show]
   resources :board_threads, only: [:show, :new, :create, :delete], :path => "threads"  do
@@ -17,6 +20,7 @@ Rails.application.routes.draw do
   get '/login' => 'sessions#new', as: 'login'
   post '/session' => 'sessions#create', as: 'session'
   get '/logout' => 'sessions#destroy', as: 'logout'
+  get '/threads/:board_thread_id/lock' => 'board_threads#lock', as: 'lock'
 
 
 end

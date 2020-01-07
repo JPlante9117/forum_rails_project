@@ -10,7 +10,7 @@
   </head>
 
   <body>
-    <div>
+    <div class="navbar">
       <%= link_to "Home", root_path %>
       <%= link_to "Rules", "/rules" %>
       <%= link_to "Forum", "/boards" %>
@@ -20,13 +20,15 @@
         <%= link_to "Profile", "/users/#{current_user.slug}" %>
         <%= link_to "Logout", "/logout" %>
         <% if admin? %>
-          <%= link_to "Admin", '/admin/boards' %>
+          <%= link_to "Admin", '/admin' %>
         <% end %>
       <% else %>
         <%= link_to "Login", "/login" %>
         <%= link_to "Register", "/signup" %>
       <% end %>
     </div>
-    <%= yield %>
+    <div class="main">
+      <%= yield %>
+    </div>
   </body>
 </html>
