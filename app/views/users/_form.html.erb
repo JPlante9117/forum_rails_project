@@ -2,7 +2,7 @@
     <%= errors_or_requirements(user, "username") %><br>
     <%= user_form.text_field :username, size: 50 %><br><br><br>
 
-    <%= user_form.label "Password" %> <span class="note"><%= user_form.label "required" %></span><br>
+    <%= user_form.label "Password" %> <span class="note"><%= user_form.label "required" if current_page?(signup_path) %></span><br>
     <%= errors_or_requirements(user, "password") %><br>
     <%= user_form.password_field :password, size: 50 %><br><br><br>
 

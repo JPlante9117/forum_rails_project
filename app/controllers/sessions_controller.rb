@@ -5,11 +5,10 @@ class SessionsController < ApplicationController
     end
     
     def create
-
         if params[:username]
             user = User.find_by(username: params[:username])
             unless user && user.authenticate(params[:password])
-                render 'new'
+               return render 'new'
             end
         else
             user = User.find_or_create_by(id: auth['uid']) do |u|

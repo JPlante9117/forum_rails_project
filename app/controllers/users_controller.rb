@@ -44,6 +44,16 @@ class UsersController < ApplicationController
         @users = User.all
     end
 
+    def destroy
+        @user = User.find_by(username: params[:user][:username])
+        if @user == primary_admin
+            redirect_to user_path(@user.username) and return
+        end
+        @user.delete
+
+        redirect_to logout_path and return
+    end
+
     def karma
         @user = User.find_by(username: deslugger(params[:user][:slug]))
         @user.karma += 1
@@ -56,5 +66,9 @@ class UsersController < ApplicationController
 
     def user_params
         params.require(:user).permit(:username, :password, :password_confirmation, :admin, :karma)
+    end
+
+    def primary_admin
+        User.find_by(id: 1)
     end
 end

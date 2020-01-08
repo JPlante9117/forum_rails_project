@@ -16,7 +16,7 @@ Rails.application.routes.draw do
     resources :posts, except: [:update]
     patch '/posts' => 'posts#update'
   end
-  resources :users, only: [:index, :create, :edit, :update, :show], param: :slug
+  resources :users, param: :slug
   get '/signup' => 'users#new', as: 'signup'
   get '/login' => 'sessions#new', as: 'login'
   post '/session' => 'sessions#create', as: 'session'

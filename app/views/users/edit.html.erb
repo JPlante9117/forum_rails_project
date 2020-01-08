@@ -8,8 +8,6 @@
         <%= user_form.label "Administrator?" %>
         <%= user_form.check_box :admin %>
     <% end %>
-    <%= user_form.hidden_field :slug, :value => params[:slug] %>
-    <%= user_form.submit "Update Profile" %>
+    <%= user_form.hidden_field :slug, :value => params[:slug] %><br><br>
+    <%= user_form.submit "Update Profile" %> <%= button_to "Delete Account", user_path(@user), :method => :delete, data: {confirm: "You are about to delete this profile. This is NOT a reversable action. Are you sure this is what you want to do?"} %>
 <% end %>
-
-<%= params %>
