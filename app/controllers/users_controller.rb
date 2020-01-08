@@ -24,13 +24,13 @@ class UsersController < ApplicationController
     end
 
     def update
-        @user = User.find_by(id: params[:slug])
+        @user = User.find_by(username: deslugger(params[:user][:slug]))
         if params[:user][:password].blank? && params[:user][:password_confirmation].blank?
             params[:user].delete(:password)
             params[:user].delete(:password_confirmation)
         end
         if @user.update(user_params)
-            redirect_to user_path(@user)
+            redirect_to user_path(@user.slug)
         else
             render 'edit'
         end
@@ -40,9 +40,17 @@ class UsersController < ApplicationController
         @users = User.all
     end
 
+    def karma
+        @user = User.find_by(username: deslugger(params[:user][:slug]))
+        @user.karma += 1
+        @user.update(user_params)
+
+        redirect_to user_path(@user.slug)
+    end
+
     private
 
     def user_params
-        params.require(:user).permit(:username, :password, :password_confirmation, :admin)
+        params.require(:user).permit(:username, :password, :password_confirmation, :admin, :karma)
     end
 end

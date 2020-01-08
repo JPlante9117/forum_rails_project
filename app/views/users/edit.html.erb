@@ -1,25 +1,26 @@
 <div class="errors"><%= display_user_errors(@user).html_safe unless @user.errors.empty? %></div>
 
-<%= form_for @user do |u| %>
-    <%= u.label "Username" %> <span class="note"><%= u.label "required" %></span><br>
+<%= form_for @user do |user_form| %>
+    <%= user_form.label "Username" %> <span class="note"><%= user_form.label "required" %></span><br>
     <%= errors_or_requirements(@user, "username") %><br>
-    <%= u.text_field :username, size: 50 %><br><br><br>
+    <%= user_form.text_field :username, size: 50 %><br><br><br>
 
-    <%= u.label "Password" %> <span class="note"><%= u.label "required" %></span><br>
+    <%= user_form.label "Password" %> <span class="note"><%= user_form.label "required" %></span><br>
     <%= errors_or_requirements(@user, "password") %><br>
-    <%= u.password_field :password, size: 50 %><br><br><br>
+    <%= user_form.password_field :password, size: 50 %><br><br><br>
 
 
-    <%= u.label "Confirm Password" %> <span class="note"><%= u.label "required" %></span><br>
+    <%= user_form.label "Confirm Password" %> <span class="note"><%= user_form.label "required" %></span><br>
     <%= errors_or_requirements(@user, "password_confirmation") %><br>
-    <%= u.password_field :password_confirmation, size: 50 %><br>
+    <%= user_form.password_field :password_confirmation, size: 50 %><br>
     <br><br>
 
-    <% if admin? %>
-        <%= u.label "Administrator?" %>
-        <%= u.check_box :admin %>
+    <% if admin? && current_user != @user%>
+        <%= user_form.label "Administrator?" %>
+        <%= user_form.check_box :admin %>
     <% end %>
-    <%= u.submit "Update Profile" %>
+    <%= user_form.hidden_field :slug, :value => params[:slug] %>
+    <%= user_form.submit "Update Profile" %>
 <% end %>
 
 <%= params %>

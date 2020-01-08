@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   post '/session' => 'sessions#create', as: 'session'
   get '/logout' => 'sessions#destroy', as: 'logout'
   get '/threads/:board_thread_id/lock' => 'board_threads#lock', as: 'lock'
+  post '/karma' => 'users#karma', as: 'karma'
 
 
 end

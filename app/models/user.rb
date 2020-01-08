@@ -12,11 +12,11 @@ class User < ApplicationRecord
                         :presence => true,
                         :length => {:within => 6..40, :message => "must be at least 6 characters long"}
 
-    validates :password, :format => {:with => CONTAINS_CAP, :message => "must contain an uppercase letter"}
-    validates :password, :format => {:with => CONTAINS_LOW, :message => "must contain a lowercase letter"}
-    validates :password, :format => {:with => CONTAINS_NUM, :message => "must contain a number"}
-    validates :password, :format => {:with => CONTAINS_SYM, :message => "must contain a symbol"}
-    validates :password, :format => {:with => CONTAINS_CHA, :message => "must contain at least 8 characters"}
+    validates :password, :format => {:with => CONTAINS_CAP, :message => "must contain an uppercase letter"}, :if => :password
+    validates :password, :format => {:with => CONTAINS_LOW, :message => "must contain a lowercase letter"}, :if => :password
+    validates :password, :format => {:with => CONTAINS_NUM, :message => "must contain a number"}, :if => :password
+    validates :password, :format => {:with => CONTAINS_SYM, :message => "must contain a symbol"}, :if => :password
+    validates :password, :format => {:with => CONTAINS_CHA, :message => "must contain at least 8 characters"}, :if => :password
     
     validates_presence_of :password_digest
 
