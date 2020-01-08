@@ -12,6 +12,7 @@ class Admin::BoardsController < AdminController
     def create
         @board = Board.new(board_params)
         if @board.save
+            flash.notice = "Board successfully created!"
             redirect_to admin_boards_path
         else
             @categories = Category.all
@@ -27,8 +28,10 @@ class Admin::BoardsController < AdminController
     def update
         @board = Board.find_by_id(params[:id])
         if @board.update(board_params)
+            flash.notice = "Board successfully updated!"
             redirect_to admin_boards_path
         else
+            @categories = Category.all
             render 'edit'
         end
     end
@@ -37,6 +40,7 @@ class Admin::BoardsController < AdminController
         board = Board.find_by_id(params[:id])
         board.delete
 
+        flash.notice = "Board deleted!"
         redirect_to admin_boards_path
     end
 

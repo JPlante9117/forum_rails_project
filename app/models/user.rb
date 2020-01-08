@@ -20,7 +20,7 @@ class User < ApplicationRecord
     
     validates_presence_of :password_digest
 
-    has_many :posts
+    has_many :posts, dependent: :destroy
     has_many :board_threads, through: :posts
 
     def slug

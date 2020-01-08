@@ -9,10 +9,9 @@ Rails.application.routes.draw do
   namespace "admin" do
     resources :categories
     resources :boards
-    resources :users
   end
   resources :boards, only: [:index, :show]
-  resources :board_threads, only: [:show, :new, :create, :delete], :path => "threads"  do
+  resources :board_threads, only: [:show, :new, :create, :destroy], :path => "threads"  do
     resources :posts, except: [:update]
     patch '/posts' => 'posts#update'
   end

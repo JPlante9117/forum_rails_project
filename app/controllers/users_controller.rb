@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-
+    before_action :redirect_if_logged_out
+    skip_before_action :redirect_if_logged_out, only: [:new, :create, :index]
     def new
         @user = User.new
     end
@@ -8,6 +9,7 @@ class UsersController < ApplicationController
         @user = User.new(user_params)
         if @user.save
             session[:user_id] = @user.id
+            flash.notice = "Signup successful!"
             redirect_to root_path
         else
             render 'new'
@@ -15,25 +17,20 @@ class UsersController < ApplicationController
     end
 
     def show
-        redirect_if_logged_out
         @user = User.find_by(username: deslugger(params[:slug]))
     end
 
     def edit
-        
         @user = User.find_by(username: deslugger(params[:slug]))
         match_user_or_admin(@user)
     end
 
     def update
-        
         @user = User.find_by(username: deslugger(params[:user][:slug]))
         match_user_or_admin(@user)
-        if params[:user][:password].blank? && params[:user][:password_confirmation].blank?
-            params[:user].delete(:password)
-            params[:user].delete(:password_confirmation)
-        end
+        check_password_update
         if @user.update(user_params)
+            flash.notice = "Profile successfully updated!"
             redirect_to user_path(@user.slug)
         else
             render 'edit'
@@ -45,18 +42,27 @@ class UsersController < ApplicationController
     end
 
     def destroy
-        @user = User.find_by(username: params[:user][:username])
+        @user = User.find_by(username: params[:slug])
         if @user == primary_admin
             redirect_to user_path(@user.username) and return
+        else
+            if @user == current_user
+                @user.posts.delete
+                @user.delete
+                flash.notice = "User deleted!"
+                redirect_to logout_path and return
+            else
+                @user.posts.delete
+                @user.delete
+                flash.notice = "User deleted!"
+                redirect_to root_path and return
+            end
         end
-        @user.delete
-
-        redirect_to logout_path and return
     end
 
     def karma
         @user = User.find_by(username: deslugger(params[:user][:slug]))
-        @user.karma += 1
+        increase_karma(@user)
         @user.update(user_params)
 
         redirect_to user_path(@user.slug)
@@ -70,5 +76,16 @@ class UsersController < ApplicationController
 
     def primary_admin
         User.find_by(id: 1)
+    end
+
+    def increase_karma(user)
+        user.karma += 1
+    end
+
+    def check_password_update
+        if params[:user][:password].blank? && params[:user][:password_confirmation].blank?
+            params[:user].delete(:password)
+            params[:user].delete(:password_confirmation)
+        end
     end
 end

@@ -2,7 +2,7 @@
     <div class="errors_list"><%= board_errors_display(board).html_safe %></div>
 <% end %>
 
-<%= form_for board, :url => admin_boards_path do |board_form| %>
+<%= form_for [:admin, board] do |board_form| %>
     <%= board_form.label :title %><br>
     <%= board_form.text_field :title %><br><br>
 

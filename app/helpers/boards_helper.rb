@@ -1,8 +1,15 @@
 module BoardsHelper
 
     def last_post(thread)
-        post = thread.posts.last
-        "Last Post By #{link_to post.user.username, user_path(post.user.username)} <br> #{display_full_date_time(post.created_at)}"
+        unless thread.posts.empty?
+            post = thread.posts.last
+            if post.user
+                user = post.user.username
+            else
+                user = "DELETED USER"
+            end
+            "Last Post By #{link_to user, user_path(user)} <br> #{display_full_date_time(post.created_at)}"
+        end
     end
 
 end

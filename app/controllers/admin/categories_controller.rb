@@ -9,6 +9,7 @@ class Admin::CategoriesController < AdminController
     def create
         @category = Category.new(cat_params)
         if @category.save
+            flash.notice = "Category successfully created!"
             redirect_to admin_categories_path
         else
             render 'new'
@@ -22,6 +23,7 @@ class Admin::CategoriesController < AdminController
     def update
         @category = Category.find_by_id(params[:id])
         if @category.update(cat_params)
+            flash.notice = "Category successfully updated!"
             redirect_to admin_categories_path
         else
             render 'edit'
@@ -32,6 +34,7 @@ class Admin::CategoriesController < AdminController
         category = Category.find_by_id(params[:id])
         category.delete
 
+        flash.notice = "Category deleted!"
         redirect_to admin_categories_path
     end
 

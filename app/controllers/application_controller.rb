@@ -15,7 +15,8 @@ class ApplicationController < ActionController::Base
 
     def redirect_if_logged_out
         if !logged_in?
-            redirect_to root_path
+            flash.notice = "Please Login to Access"
+            redirect_back(fallback_location: root_path)
         end
     end
 

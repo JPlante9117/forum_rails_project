@@ -28,6 +28,10 @@
       <% end %>
     </div>
     <div class="main">
+      <% if flash.notice %>
+        <%= flash.notice %>
+      <% end %>
+      <br><br>
       <%= yield %>
     </div>
   </body>

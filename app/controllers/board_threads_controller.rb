@@ -1,15 +1,16 @@
 class BoardThreadsController < ApplicationController
+    before_action :redirect_if_logged_out
     def new
         @board = Board.find_by_id(params[:board_id])
-        @board_thread = BoardThread.new
+        @board_thread = @board.board_threads.build
         @board_thread.posts.build
     end
 
     def create
-        @board = Board.find_by_id(params[:board])
-        @board_thread = BoardThread.new(board_thread_params)
-        # raise @board_thread.posts.inspect
+        @board = Board.find_by_id(params[:board_thread][:board_id])
+        @board_thread = @board.board_threads.build(board_thread_params)
         if @board_thread.save
+            flash.notice = "Thread successfully created!"
             redirect_to board_thread_path(@board_thread)
         else
             render 'new'
@@ -23,12 +24,13 @@ class BoardThreadsController < ApplicationController
 
     def destroy
         board_thread = BoardThread.find_by_id(params[:id])
+        board = board_thread.board
         if admin?
             board_thread.delete
-
-        else
-            redirect_to root_path
+            flash.notice = "Thread deleted!"
+            redirect_to board_path(board) and return
         end
+        redirect_to board_path(board) and return
     end
 
     def lock

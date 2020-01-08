@@ -17,11 +17,11 @@ module UsersHelper
     def display_user_errors(user)
         if user.errors.any?
             errors = user.errors.full_messages.map {|err| tag.li err}
-            error_msg(errors)
+            profile_error_msg(errors)
         end
     end
 
-    def error_msg(errors)
+    def profile_error_msg(errors)
         "There was an error updating the profile: <ul>#{errors.join(" ")}</ul>"
     end
     
