@@ -1,6 +1,6 @@
 module PostsHelper
     def quoted(quoteparams)
-        <<-HTML
+        quote = <<-HTML
         <blockquote>
            #{quoteparams[:poster]} said at #{display_full_date_time(DateTime.parse(quoteparams[:timestamp]))}:
            <blockquote class="innerquote">
@@ -8,5 +8,6 @@ module PostsHelper
            </blockquote>
         </blockquote>
         HTML
+        quote.split.join(" ")
     end
 end

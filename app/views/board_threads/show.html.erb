@@ -24,9 +24,10 @@
         <% end %>
         <%= button_to "Quote", new_board_thread_post_path(p.board_thread, p), params: {quote: {content: p.content, poster: p.user.username, timestamp: p.created_at}}, method: :get %>
         <p><%= p.content.html_safe %></p>
-        <span>Posted <%= display_full_date_time(p.created_at) %></span>
-        <% if p.created_at != p.updated_at %>
-            Last Edited <%= display_full_date_time(p.updated_at) %>
+        <% if p.created_at == p.updated_at%>
+            <div style="font-size: x-small; text-align: right;">Posted <%= display_full_date_time(p.created_at) %></div>
+        <% elsif p.created_at != p.updated_at %>
+            <div style="font-size: x-small; text-align: right;">Edited <%= display_full_date_time(p.updated_at) %></div>
         <% end %>
         </td>
     </tr>

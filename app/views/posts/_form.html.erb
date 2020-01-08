@@ -6,6 +6,7 @@
         <%= pf.text_area :content, rows: 10, cols: 60 %>
     <% end %>
     <%= pf.hidden_field :user_id, value: current_user.id %>
+    <%= pf.hidden_field :post_id, value: post.id %>
     <br>
     <%= pf.submit %>
 <% end %>

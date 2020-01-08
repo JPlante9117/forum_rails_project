@@ -21,7 +21,7 @@ class PostsController < ApplicationController
     end
 
     def update
-        post = Post.find_by_id(params[:id])
+        post = Post.find_by_id(params[:post][:post_id])
         if post.update(post_params)
             redirect_to board_thread_path(post.board_thread)
         else
@@ -38,7 +38,7 @@ class PostsController < ApplicationController
     private
 
     def post_params
-        params.require(:post).permit(:content, :board_thread_id, :user_id)
+        params.require(:post).permit(:content, :board_thread_id, :user_id, :updated_at)
     end
 
     def redirect_if_locked
