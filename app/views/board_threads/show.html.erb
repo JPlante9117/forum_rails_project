@@ -20,9 +20,9 @@
         </td>
         <td>
         <% if p.user == current_user || admin? %>
-            <%= button_to "Edit", edit_board_thread_post_path(p), :method => :get  %> | <%= button_to "Delete", board_thread_post_path(p), params: {post_id: p.id}, :method => :delete %> | 
+            <%= button_to "Edit", edit_board_thread_post_path(p.board_thread, p), :method => :get  %> | <%= button_to "Delete", board_thread_post_path(p.board_thread, p), :method => :delete %> | 
         <% end %>
-        <%= button_to "Quote", new_board_thread_post_path(board_thread_id: params[:id]), params: {quote: {content: p.content, poster: p.user.username, timestamp: p.created_at}}, method: :get %>
+        <%= button_to "Quote", new_board_thread_post_path(p.board_thread, p), params: {quote: {content: p.content, poster: p.user.username, timestamp: p.created_at}}, method: :get %>
         <p><%= p.content.html_safe %></p>
         <span>Posted <%= display_full_date_time(p.created_at) %></span>
         <% if p.created_at != p.updated_at %>

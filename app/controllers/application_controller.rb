@@ -21,7 +21,7 @@ class ApplicationController < ActionController::Base
 
     def require_admin
         unless current_user && current_user.admin
-            redirect_to root_path
+            redirect_back(fallback_location: root_path)
         end
     end
 
@@ -37,5 +37,12 @@ class ApplicationController < ActionController::Base
                 DateTime.new
             end
         end.reverse!
+    end
+
+    
+    def match_user_or_admin(user)
+        unless user == current_user || admin?
+            redirect_back(fallback_location: root_path)
+        end
     end
 end

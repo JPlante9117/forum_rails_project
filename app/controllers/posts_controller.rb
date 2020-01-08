@@ -2,26 +2,37 @@ class PostsController < ApplicationController
     def new
         @board_thread = BoardThread.find_by_id(params[:board_thread_id])
         redirect_if_locked
-        @post = @board_thread.posts.build(user_id: current_user.id)
+        @post = @board_thread.posts.build
     end
 
     def create
-        post = Post.create(post_params)
-        redirect_to board_thread_path(post.board_thread)
+        @board_thread = BoardThread.find_by_id(params[:board_thread_id])
+        @post = @board_thread.posts.build(post_params)
+        if @post.save
+            redirect_to board_thread_path(@post.board_thread)
+        else
+            render 'new'
+        end
     end
 
     def edit
-        raise params.inspect
         @post = Post.find_by_id(params[:id])
+        match_user_or_admin(@post.user)
     end
 
     def update
+        post = Post.find_by_id(params[:id])
+        if post.update(post_params)
+            redirect_to board_thread_path(post.board_thread)
+        else
+            render 'edit'
+        end
     end
 
     def destroy
-        post = Post.find_by_id(params[:post_id])
+        post = Post.find_by_id(params[:id])
         post.delete
-        redirect_to board_thread_path(params[:id])
+        redirect_to board_thread_path(params[:board_thread_id])
     end
 
     private
@@ -32,7 +43,7 @@ class PostsController < ApplicationController
 
     def redirect_if_locked
         if @board_thread.locked
-            redirect_to board_thread_path(@board_thread)
+            redirect_back(fallback_location: board_thread_path(@board_thread))
         end
     end
 

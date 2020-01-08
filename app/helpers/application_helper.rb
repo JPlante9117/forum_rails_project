@@ -2,7 +2,7 @@ module ApplicationHelper
     def display_date(data)
         if data.strftime("%m/%d/%Y") == Date.today.strftime("%m/%d/%Y")
             "Today"
-        elsif data.strftime("%m/%d/%y") == Date.today.prev_day.strftime("%m/%d/%Y")
+        elsif data.strftime("%m/%d/%Y") == Date.today.prev_day.strftime("%m/%d/%Y")
             "Yesterday"
         else
             data.strftime("on %B %e")

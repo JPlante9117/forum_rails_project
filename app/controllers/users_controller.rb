@@ -20,11 +20,15 @@ class UsersController < ApplicationController
     end
 
     def edit
+        
         @user = User.find_by(username: deslugger(params[:slug]))
+        match_user_or_admin(@user)
     end
 
     def update
+        
         @user = User.find_by(username: deslugger(params[:user][:slug]))
+        match_user_or_admin(@user)
         if params[:user][:password].blank? && params[:user][:password_confirmation].blank?
             params[:user].delete(:password)
             params[:user].delete(:password_confirmation)
