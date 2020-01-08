@@ -1,18 +1,9 @@
-<%= form_for @user do |u| %>
-    <%= u.label "Username" %> <span class="note"><%= u.label "required" %></span><br>
-    <%= errors_or_requirements(@user, "username") %><br>
-    <%= u.text_field :username, size: 50 %><br><br><br>
-
-    <%= u.label "Password" %> <span class="note"><%= u.label "required" %></span><br>
-    <%= errors_or_requirements(@user, "password") %><br>
-    <%= u.password_field :password, size: 50 %><br><br><br>
+<div class="errors"><%= display_user_errors(@user).html_safe unless @user.errors.empty? %></div>
 
 
-    <%= u.label "Confirm Password" %> <span class="note"><%= u.label "required" %></span><br>
-    <%= errors_or_requirements(@user, "password_confirmation") %><br>
-    <%= u.password_field :password_confirmation, size: 50 %><br>
-    <br><br>
+<%= form_for @user do |user_form| %>
+    <%= render partial: "users/form", locals: {user: @user, user_form: user_form} %>
 
-    <%= u.submit "Signup" %>
+    <%= user_form.submit "Signup" %>
 <% end %>
 <%= button_to "Signup with GitHub", '/auth/github' %>

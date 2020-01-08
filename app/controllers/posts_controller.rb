@@ -2,7 +2,7 @@ class PostsController < ApplicationController
     def new
         @board_thread = BoardThread.find_by_id(params[:board_thread_id])
         redirect_if_locked
-        @post = Post.new(board_thread_id: @board_thread.id)
+        @post = @board_thread.posts.build(user_id: current_user.id)
     end
 
     def create
@@ -11,6 +11,8 @@ class PostsController < ApplicationController
     end
 
     def edit
+        raise params.inspect
+        @post = Post.find_by_id(params[:id])
     end
 
     def update
