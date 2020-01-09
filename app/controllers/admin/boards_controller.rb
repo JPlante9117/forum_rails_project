@@ -47,6 +47,6 @@ class Admin::BoardsController < AdminController
     private
 
     def board_params
-        params.require(:board).permit(:title, :category_id)
+        params.require(:board).permit(:title, :category_id, :description)
     end
 end

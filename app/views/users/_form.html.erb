@@ -1,13 +1,10 @@
-    <%= user_form.label "Username" %> <span class="note"><%= user_form.label "required" %></span><br>
-    <%= errors_or_requirements(user, "username") %><br>
-    <%= user_form.text_field :username, size: 50 %><br><br><br>
-
-    <%= user_form.label "Password" %> <span class="note"><%= user_form.label "required" if current_page?(signup_path) %></span><br>
-    <%= errors_or_requirements(user, "password") %><br>
-    <%= user_form.password_field :password, size: 50 %><br><br><br>
-
-
-    <%= user_form.label "Confirm Password" %> <span class="note"><%= user_form.label "required" %></span><br>
-    <%= errors_or_requirements(user, "password_confirmation") %><br>
-    <%= user_form.password_field :password_confirmation, size: 50 %><br>
+    <%= errors(user, "username") %><br>
+    <h2>Username</h2>
+    <div class="form_input_bg"><span class="tooltiptext"><%= requirements("username") %></span><%= user_form.text_field :username, size: 50, :class => "form_input_field", :placeholder => "Username" %></div>
+    <h2>Password</h2>
+    <%= errors(user, "password") %><br>
+    <div class="form_input_bg"><span class="tooltiptext"><%= requirements("password") %></span><%= user_form.password_field :password, size: 50, :class => "form_input_field", :placeholder => "Password" %></div>
+    <h2>Confirm Password</h2>
+    <%= errors(user, "password_confirmation") %><br>
+    <div class="form_input_bg"><%= user_form.password_field :password_confirmation, size: 50, :class => "form_input_field", :placeholder => "Confirm Password" %></div>
     <br><br>

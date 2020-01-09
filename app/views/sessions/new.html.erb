@@ -1,11 +1,13 @@
-<%= form_tag '/session', method: :post do %>
-    <%= label_tag "Username" %><br>
-    <%= text_field_tag :username%><br><br><br>
+<div class="user_form_container">
+    <h1>Login</h1>
+    <%= form_tag '/session', :html => {:class => "user_forms"}, method: :post do %>
+        <h2>Username</h2>
+        <div class="form_input_bg"><%= text_field_tag :username, "", class: "form_input_field", :placeholder => "Username" %></div>
 
-    <%= label_tag "Password" %><br>
-    <%= password_field_tag :password%><br><br><br>
+        <h2>Password</h2>
+        <div class="form_input_bg"><%= password_field_tag :password, "", class: "form_input_field", :placeholder => "Password" %></div>
 
-    <%= submit_tag "Login" %>
-<% end %>
-
-<p>Or try logging in via <%= link_to 'GitHub', '/auth/github', method: :post %></p>
+        <%= submit_tag "Login" %>
+    <% end %>
+    <%= button_to "Signup with GitHub", '/auth/github' %>
+</div>

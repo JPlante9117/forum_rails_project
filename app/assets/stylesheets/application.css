@@ -14,6 +14,9 @@
  *= require_self
  */
 
+  * {
+    font-family: "Aktiv Grotesk", 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  }
  .navbar {
     overflow: hidden;
     background-color: #333;
@@ -35,13 +38,20 @@
     background: #ddd;
     color: black;
   }
+
+  body{
+    margin: 0;
+    background-color: grey;
+  }
   
   .main {
-    margin-top: 70px;
+    margin-top: 20px;
+    margin-left: 5px;
   }
 
  div.field_with_errors input{
      border: 2px solid red;
+     border-radius: 10px;
  }
 
  div.field_with_errors select{
@@ -90,4 +100,24 @@ td.user_side {
 
 th.category {
   text-align: left;
+}
+
+div.flash_success {
+   background-color: rgb(0, 192, 0);
+   color: white;
+   padding-left: 30px;
+   font-weight: bolder;
+   font-size: x-large;
+   width: 100%;
+   margin-top: 45px;
+}
+
+div.flash_error {
+  background-color: rgb(255, 58, 58);
+   color: white;
+   padding-left: 30px;
+   font-weight: bolder;
+   font-size: x-large;
+   width: 100%;
+   margin-top: 45px;
 }

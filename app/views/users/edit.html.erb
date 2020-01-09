@@ -1,13 +1,12 @@
-<div class="errors"><%= display_user_errors(@user).html_safe unless @user.errors.empty? %></div>
+<div class="user_form_container">
+    <%= form_for @user, :html => {:class => "user_forms"} do |user_form| %>
+        <%= render partial: "users/form", locals: {user: @user, user_form: user_form} %>
 
-
-<%= form_for @user do |user_form| %>
-    <%= render partial: "users/form", locals: {user: @user, user_form: user_form} %>
-
-    <% if admin? && current_user != @user%>
-        <%= user_form.label "Administrator?" %>
-        <%= user_form.check_box :admin %>
+        <% if admin? && current_user != @user%>
+            <%= user_form.label "Administrator?" %>
+            <%= user_form.check_box :admin %>
+        <% end %>
+        <%= user_form.hidden_field :slug, :value => params[:slug] %><br><br>
+        <%= user_form.submit "Update Profile" %>
     <% end %>
-    <%= user_form.hidden_field :slug, :value => params[:slug] %><br><br>
-    <%= user_form.submit "Update Profile" %>
-<% end %>
+</div>

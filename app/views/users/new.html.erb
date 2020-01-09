@@ -1,9 +1,9 @@
-<div class="errors"><%= display_user_errors(@user).html_safe unless @user.errors.empty? %></div>
+<div class="user_form_container">
+    <%= form_for @user, :html => {:class => "user_forms"} do |user_form| %>
+        <h1>Sign Up</h1>
+        <%= render partial: "users/form", locals: {user: @user, user_form: user_form} %>
 
-
-<%= form_for @user do |user_form| %>
-    <%= render partial: "users/form", locals: {user: @user, user_form: user_form} %>
-
-    <%= user_form.submit "Signup" %>
-<% end %>
-<%= button_to "Signup with GitHub", '/auth/github' %>
+        <%= user_form.submit "Signup" %>
+    <% end %>
+    <%= button_to "Signup with GitHub", '/auth/github' %>
+</div>

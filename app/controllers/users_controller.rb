@@ -2,10 +2,12 @@ class UsersController < ApplicationController
     before_action :redirect_if_logged_out
     skip_before_action :redirect_if_logged_out, only: [:new, :create, :index]
     def new
+        redirect_if_logged_in
         @user = User.new
     end
 
     def create
+        redirect_if_logged_in
         @user = User.new(user_params)
         if @user.save
             session[:user_id] = @user.id

@@ -3,10 +3,13 @@
 <% end %>
 
 <%= form_for [:admin, board] do |board_form| %>
-    <%= board_form.label :title %><br>
-    <%= board_form.text_field :title %><br><br>
+    <h2>Board Title</h2>
+    <%= board_form.text_field :title %>
 
-    <%= board_form.label :category_id, "Parent Category" %><br>
+    <h2>Board Description</h2>
+    <%= board_form.text_area :description %>
+
+    <h2>Parent Category</h2>
     <%= board_form.collection_select :category_id, categories, :id, :title, {include_blank: 'Select A Category'} %><br><br>
     <%= board_form.submit %>
 <% end %>

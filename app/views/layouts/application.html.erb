@@ -27,11 +27,12 @@
         <%= link_to "Register", "/signup" %>
       <% end %>
     </div>
-    <div class="main">
-      <% if flash.notice %>
-        <%= flash.notice %>
-      <% end %>
+    <% if flash.notice %>
+      <%= flash_message.html_safe %>
+    <% else %>
       <br><br>
+    <% end %>
+    <div class="main">
       <%= yield %>
     </div>
   </body>

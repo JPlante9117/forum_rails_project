@@ -1,6 +1,7 @@
 <%= form_for @category, :url => '/admin/categories' do |cat_form| %>
+    
+    <div class="errors_list"><%= category_errors_display(@category).html_safe if @category.errors.any? %></div>
     <%= cat_form.label :title %><br>
-    <%= category_errors_display(@category) %>
     <%= cat_form.text_field :title %><br><br>
 
     <%= cat_form.submit %>

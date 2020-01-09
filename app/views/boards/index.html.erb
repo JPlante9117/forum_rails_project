@@ -1,16 +1,17 @@
-<table>
-    <% @categories.each do |c| %>
-        <tr>
-            <th class="category">
-                <%= c.title %>
-            </th>
-        </tr>
-        <% c.boards.order(:title).each do |b| %>
-            <tr>
-            <td>
-                <%= link_to b.title, board_path(b) %>
-            </td>
-            </tr>
-        <% end %>
-    <% end %>
-<table>
+<div class="innerwrapper">
+    <div class="forum">
+        <div class="category">
+            <% @categories.each do |c| %>
+                <div class="main_header"><%= c.title %></div>
+                <% c.boards.order(:title).each do |b| %>
+                    <div class="forum_tile">
+                        <%= link_to b.title, board_path(b), :class => "board_title" %>
+                        <div class="description">
+                            <%= b.description %>
+                        </div>
+                    </div>
+                <% end %>
+            <% end %>
+        </div>
+    </div>
+</div>

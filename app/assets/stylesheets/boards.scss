@@ -1,3 +1,58 @@
 // Place all the styles related to the boards controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+div.innerwrapper {
+    color: #222;
+    text-align: left;
+    padding: 30px;
+}
+    
+div.forum {
+    color: #222;
+    text-align: left;
+    padding: 30px;
+}
+
+div.category {
+    background-color: #efefef;
+    border-radius: 10px;
+    border: 10px solid #fbfbfb;
+    padding: 0px;
+    margin: 0;
+}
+
+div.main_header {
+    text-align: -webkit-left;
+    padding: 40px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #fff;
+    background-color: #233247;
+    border-radius: 10px;
+}
+
+div.forum_tile {
+    padding: 20px;
+    margin:20px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 10px;
+}
+
+.forum_tile .board_title {
+    font: 14px / 1.4 sans-serif;
+    font-family: 'Segoe UI','Helvetica Neue',Helvetica,Roboto,Oxygen,Ubuntu,Cantarell,'Fira Sans','Droid Sans',sans-serif;
+    list-style: none;
+    font-size: 17px;
+    font-weight: 700;
+    box-sizing: border-box;
+    background-color: transparent;
+    color: #1f1b49;
+    text-decoration: none;
+}
+
+.forum_tile .description {
+    padding-top: 5px;
+    padding-left: 15px;
+    font-size: x-small;
+}

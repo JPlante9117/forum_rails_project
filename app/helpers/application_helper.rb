@@ -16,4 +16,14 @@ module ApplicationHelper
     def display_full_date_time(data)
         display_date(data) + " " + display_time(data)
     end
+
+    def flash_message
+        if flash[:notice]
+            if flash[:notice].include?("successfully")
+                tag.div "<br>#{flash[:notice].titlecase}<br><br>".html_safe, class: "flash_success"
+            else
+                tag.div "<br>#{flash[:notice].titlecase}<br><br>".html_safe, class: "flash_error"
+            end
+        end
+    end
 end

@@ -5,6 +5,12 @@ class ApplicationController < ActionController::Base
         session[:user_id] ? true : false
     end
 
+    def redirect_if_logged_in
+        if logged_in?
+            redirect_back(fallback_location: root_path)
+        end
+    end
+
     def current_user
         User.find_by_id(session[:user_id])
     end
@@ -15,7 +21,7 @@ class ApplicationController < ActionController::Base
 
     def redirect_if_logged_out
         if !logged_in?
-            flash.notice = "Please Login to Access"
+            flash.notice = "To access this feature, please sign in"
             redirect_back(fallback_location: root_path)
         end
     end
