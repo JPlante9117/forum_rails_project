@@ -1,32 +1,27 @@
-<table>
-    <tr>
-        <th>
-            <%= @board.title %>
-        </th>
-    </tr>
-    <% @board_threads.each do |t| %>
-        <tr>
-        <td style="width: 80%;">
-            <%= link_to t.title, board_thread_path(t) %>
-        </td>
-        <td>
-            <%= last_post(t).html_safe%>
-            <br><br>
-            Total Posts: <%= t.posts.count %>
-        </td>
-        <% if admin? %>
-            <td>
-                <%= button_to "Delete Thread", board_thread_path(t), :method => :delete %>
-            </td>
-        <% end %>
-        </tr>
-    <% end %>
-</table>
-<br>
-<table>
-    <tr>
-    <td>
-        <%= button_to "Create New Thread", new_board_thread_path, params: {board_id: @board.id}, :method => :get %>
-    </td>
-    </tr>
-</table>
+<div class="innerwrapper">
+    <div class="forum">
+        <div class="forum_bod">
+            <div class="nav_path">PATH: <%= link_to @board.category.title, boards_path, :class => 'links' %> >> <%= link_to @board.title, board_path(@board), :class => 'links' %></div>
+
+            <div class="main_header">
+                <%= @board.title %>
+            </div>
+            <% @board_threads.each do |t| %>
+                <div class="forum_tile">
+                    <%= link_to friendly_title(t), board_thread_path(t), :class => "board_title" %>
+                    <div class="thread_information">
+                        <%= last_post(t).html_safe%>
+                        <br><br>
+                        Total Posts: <%= t.posts.count %>
+                        <br><br>
+                    <% if admin? %>
+                        <%= button_to "Delete Thread", board_thread_path(t), :method => :delete %>
+                    <% end %>
+                    </div>
+                </div>
+
+            <% end %>
+            <div class="centered_button"><%= button_to "Create New Thread", new_board_thread_path, params: {board_id: @board.id}, :method => :get %></div>
+        </div>
+    </div>
+</div>

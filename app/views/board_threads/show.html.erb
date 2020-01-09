@@ -1,7 +1,6 @@
 <table>
     <tr>
         <th colspan="2" style="font-size: 30px;">
-            Thread: <%= @board_thread.title %>
             <% if admin? %>
                 <% if @board_thread.locked %>
                     <div style="text-align: right; font-size: 20px;"><%= link_to "Unlock Thread", lock_path(@board_thread) %></div>
@@ -44,12 +43,12 @@
     <tr>
     <td colspan="2">
         <center>
-            <%= form_for @board_thread.posts.build, :url => board_thread_posts_path(@board_thread) do |f| %>
-                <%= f.text_area :content, cols: 180, rows: 10 %>
-                <%= f.hidden_field :user_id, value: current_user.id %>
-                <%= f.hidden_field :board_thread_id, value: @board_thread.id %><br>
-                <%= f.submit "Quick Reply"%>
-            <% end %>
+            <%# form_for @board_thread.posts.build, :url => board_thread_posts_path(@board_thread) do |f| %>
+                <%# f.text_area :content, cols: 180, rows: 10 %>
+                <%# f.hidden_field :user_id, value: current_user.id %>
+                <%# f.hidden_field :board_thread_id, value: @board_thread.id %><br>
+                <%# f.submit "Quick Reply"%>
+            <%# end %>
         </center>
     </td>
     <tr>
@@ -59,3 +58,42 @@
     </tr>
 <% end %>
 </table>
+
+<div class="innerwrapper">
+    <div class="forum">
+        <div class="forum_bod">
+            <div class="nav_path">PATH: <%= link_to @board_thread.board.category.title, boards_path, :class => 'links' %> >> <%= link_to @board_thread.board.title, board_path(@board_thread.board), :class => 'links' %> >> <%= link_to friendly_title(@board_thread), board_thread_path(@board_thread), :class => 'links' %></div>
+
+            <div class="main_header">
+                <%= @board_thread.title %>
+            </div>
+           <% @board_thread.posts.each do |p| %>
+            <% binding.pry %>
+
+    <div class="row">
+        <div class="left">
+            User: <%= p.user.username %><br>
+            Posts: <%= p.user.posts.count %><br>
+            Karma: <%= p.user.karma %>
+        </div>
+        <div class="middle">
+        <% if p.user == current_user || admin? %>
+            <%= button_to "Edit", edit_board_thread_post_path(p.board_thread, p), :method => :get  %> | <%= button_to "Delete", board_thread_post_path(p.board_thread, p), :method => :delete %> | 
+        <% end %>
+        <%= button_to "Quote", new_board_thread_post_path(p.board_thread, p), params: {quote: {content: p.content, poster: p.user.username, timestamp: p.created_at}}, method: :get %>
+        <p><%= p.content.html_safe %></p>
+        <% if p.created_at == p.updated_at%>
+            <div style="font-size: x-small; text-align: right;">Posted <%= display_full_date_time(p.created_at) %></div>
+        <% elsif p.created_at != p.updated_at %>
+            <div style="font-size: x-small; text-align: right;">Edited <%= display_full_date_time(p.updated_at) %></div>
+        <% end %>
+        </div>
+    </div>
+
+
+
+            <% end %>
+            <div class="centered_button"><%= button_to "New Post", new_board_thread_post_path(board_thread_id: params[:id]), :method => :get %></div>
+        </div>
+    </div>
+</div>

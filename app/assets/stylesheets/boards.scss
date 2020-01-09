@@ -14,15 +14,17 @@ div.forum {
     padding: 30px;
 }
 
-div.category {
+div.forum_bod {
     background-color: #efefef;
     border-radius: 10px;
     border: 10px solid #fbfbfb;
     padding: 0px;
     margin: 0;
+    font-size: xx-large;
 }
 
-div.main_header {
+div.cat_header {
+    margin-top: 28px;
     text-align: -webkit-left;
     padding: 40px;
     letter-spacing: 1px;
@@ -32,6 +34,19 @@ div.main_header {
     border-radius: 10px;
 }
 
+div.main_header {
+    margin-top: 28px;
+    text-align: -webkit-left;
+    padding: 40px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #fff;
+    background-color: #233247;
+    border-radius: 10px;
+    border-top-left-radius: 0;
+}
+
+
 div.forum_tile {
     padding: 20px;
     margin:20px;
@@ -40,10 +55,11 @@ div.forum_tile {
 }
 
 .forum_tile .board_title {
+    display: inline-block;
     font: 14px / 1.4 sans-serif;
     font-family: 'Segoe UI','Helvetica Neue',Helvetica,Roboto,Oxygen,Ubuntu,Cantarell,'Fira Sans','Droid Sans',sans-serif;
     list-style: none;
-    font-size: 17px;
+    font-size: xx-large;
     font-weight: 700;
     box-sizing: border-box;
     background-color: transparent;
@@ -54,5 +70,15 @@ div.forum_tile {
 .forum_tile .description {
     padding-top: 5px;
     padding-left: 15px;
-    font-size: x-small;
+    font-size: small;
+}
+
+.thread_information {
+    font-size: medium;
+    width: 30%;
+    height: auto;
+    margin-left: 70%;
+    padding: 10px;
+    display: inline-block;
+    border-left: solid black 1px;
 }

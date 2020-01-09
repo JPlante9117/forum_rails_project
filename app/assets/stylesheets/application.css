@@ -113,11 +113,36 @@ div.flash_success {
 }
 
 div.flash_error {
-  background-color: rgb(255, 58, 58);
+   background-color: rgb(255, 58, 58);
    color: white;
    padding-left: 30px;
    font-weight: bolder;
    font-size: x-large;
    width: 100%;
    margin-top: 45px;
+}
+
+.centered_button {
+  display: flex;
+  justify-content: center;
+}
+
+.nav_path {
+  padding-top: 10px;
+  padding-right: 40px;
+  float: left;
+  font-size: medium;
+  color: #ffffff;
+  text-decoration: none;
+  padding-left: 40px;
+  background-color: #233247;
+  border-radius: 10px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.nav_path .links {
+  color: white;
+  text-decoration: none;
+  font-weight: 700;
 }

@@ -30,6 +30,8 @@ gem 'omniauth-rails_csrf_protection', '~> 0.1'
 
 gem 'dotenv-rails'
 
+gem 'pry'
+
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 

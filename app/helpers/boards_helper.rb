@@ -12,4 +12,12 @@ module BoardsHelper
         end
     end
 
+    def friendly_title(thread)
+        if BoardThread.with_long_title.include?(thread)
+            thread.title.truncate(20)
+        else
+            thread.title
+        end
+    end
+
 end

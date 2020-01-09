@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
     end
 
     def admin?
-        current_user.admin
+        User.admin.include?(current_user)
     end
 
     def redirect_if_logged_out

@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+    scope :admin, -> { where(admin: true)}
     has_secure_password
     PASSWORD_REQUIREMENTS = /\A (?=.*\d) (?=.*([A-Z])) (?=.*([a-z])) (?=.*[[:^alnum:]]) (?=.{8,})/x
     CONTAINS_NUM = /\A (?=.*\d) /x

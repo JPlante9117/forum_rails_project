@@ -1,4 +1,5 @@
 class BoardThread < ApplicationRecord
+    scope :with_long_title, -> {where("LENGTH(title) > 20")}
     validates_presence_of :title
 
     has_many :posts, dependent: :destroy
