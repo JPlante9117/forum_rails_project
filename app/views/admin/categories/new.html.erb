@@ -1,9 +1,11 @@
-<%= form_for @category, :url => '/admin/categories' do |cat_form| %>
-    
-    <div class="errors_list"><%= category_errors_display(@category).html_safe if @category.errors.any? %></div>
-    <%= cat_form.label :title %><br>
-    <%= cat_form.text_field :title %><br><br>
-
-    <%= cat_form.submit %>
-
-<% end %>
+<div class="innerwrapper">
+  <div class="forum">
+        <div class="forum_bod">
+            <div class="nav_path">PATH: <%= link_to 'ADMIN PANEL', admin_path, :class => 'links' %> >> <%= link_to 'CATEGORIES CONTROLLER', admin_categories_path, :class => 'links' %> >> <%= link_to 'NEW CATEGORY', new_admin_category_path, :class => 'links'%></div>
+            <div class="main_header">
+                Create New Category
+            </div>
+            <%= render partial: 'form', locals: {category: @category} %>
+        </div>
+    </div>
+</div>

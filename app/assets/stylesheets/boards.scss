@@ -23,7 +23,7 @@ div.forum_bod {
     font-size: xx-large;
 }
 
-div.cat_header {
+div.cat_header, .main_header, .quick_reply_header {
     margin-top: 28px;
     text-align: -webkit-left;
     padding: 40px;
@@ -35,14 +35,6 @@ div.cat_header {
 }
 
 div.main_header {
-    margin-top: 28px;
-    text-align: -webkit-left;
-    padding: 40px;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    color: #fff;
-    background-color: #233247;
-    border-radius: 10px;
     border-top-left-radius: 0;
 }
 
@@ -54,7 +46,7 @@ div.forum_tile {
     border-radius: 10px;
 }
 
-.forum_tile .board_title {
+.forum_tile .board_title, .user_name {
     display: inline-block;
     font: 14px / 1.4 sans-serif;
     font-family: 'Segoe UI','Helvetica Neue',Helvetica,Roboto,Oxygen,Ubuntu,Cantarell,'Fira Sans','Droid Sans',sans-serif;

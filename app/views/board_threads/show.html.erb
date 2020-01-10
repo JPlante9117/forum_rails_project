@@ -1,98 +1,59 @@
-<table>
-    <tr>
-        <th colspan="2" style="font-size: 30px;">
-            <% if admin? %>
-                <% if @board_thread.locked %>
-                    <div style="text-align: right; font-size: 20px;"><%= link_to "Unlock Thread", lock_path(@board_thread) %></div>
-                <% else %>
-                    <div style="text-align: right; font-size: 20px;"><%= link_to "Lock Thread", lock_path(@board_thread) %></div>
-                <% end %>
-            <% end %>
-        </th>
-    </tr>
-<% @board_thread.posts.each do |p| %>
-    <tr>
-        <td class="user_side">
-            User: <%= p.user.username %><br>
-            Posts: <%= p.user.posts.count %><br>
-            Karma: <%= p.user.karma %>
-        </td>
-        <td>
-        <% if p.user == current_user || admin? %>
-            <%= button_to "Edit", edit_board_thread_post_path(p.board_thread, p), :method => :get  %> | <%= button_to "Delete", board_thread_post_path(p.board_thread, p), :method => :delete %> | 
-        <% end %>
-        <%= button_to "Quote", new_board_thread_post_path(p.board_thread, p), params: {quote: {content: p.content, poster: p.user.username, timestamp: p.created_at}}, method: :get %>
-        <p><%= p.content.html_safe %></p>
-        <% if p.created_at == p.updated_at%>
-            <div style="font-size: x-small; text-align: right;">Posted <%= display_full_date_time(p.created_at) %></div>
-        <% elsif p.created_at != p.updated_at %>
-            <div style="font-size: x-small; text-align: right;">Edited <%= display_full_date_time(p.updated_at) %></div>
-        <% end %>
-        </td>
-    </tr>
-<% end %>
-</table>
-<br><Br>
-<% if logged_in? && !@board_thread.locked %>
-<table>
-    <tr>
-        <th colspan="2">
-            QUICK REPLY
-        </th>
-    </tr>
-    <tr>
-    <td colspan="2">
-        <center>
-            <%# form_for @board_thread.posts.build, :url => board_thread_posts_path(@board_thread) do |f| %>
-                <%# f.text_area :content, cols: 180, rows: 10 %>
-                <%# f.hidden_field :user_id, value: current_user.id %>
-                <%# f.hidden_field :board_thread_id, value: @board_thread.id %><br>
-                <%# f.submit "Quick Reply"%>
-            <%# end %>
-        </center>
-    </td>
-    <tr>
-    <td colspan="2">
-        <%= button_to "New Post", new_board_thread_post_path(board_thread_id: params[:id]), :method => :get %>
-    </td>
-    </tr>
-<% end %>
-</table>
-
 <div class="innerwrapper">
     <div class="forum">
         <div class="forum_bod">
             <div class="nav_path">PATH: <%= link_to @board_thread.board.category.title, boards_path, :class => 'links' %> >> <%= link_to @board_thread.board.title, board_path(@board_thread.board), :class => 'links' %> >> <%= link_to friendly_title(@board_thread), board_thread_path(@board_thread), :class => 'links' %></div>
 
             <div class="main_header">
-                <%= @board_thread.title %>
+                <%= "[LOCKED]" if @board_thread.locked  %><%= @board_thread.title %>
+                <div class='locking'>
+                    <% if admin? %>
+                        <%= link_to lock_status(@board_thread), lock_path(@board_thread), :class => 'lock_link'%>
+                    <% end %>
+                </div>
             </div>
+           <div class="container">
            <% @board_thread.posts.each do |p| %>
-            <% binding.pry %>
-
-    <div class="row">
-        <div class="left">
-            User: <%= p.user.username %><br>
-            Posts: <%= p.user.posts.count %><br>
-            Karma: <%= p.user.karma %>
-        </div>
-        <div class="middle">
-        <% if p.user == current_user || admin? %>
-            <%= button_to "Edit", edit_board_thread_post_path(p.board_thread, p), :method => :get  %> | <%= button_to "Delete", board_thread_post_path(p.board_thread, p), :method => :delete %> | 
-        <% end %>
-        <%= button_to "Quote", new_board_thread_post_path(p.board_thread, p), params: {quote: {content: p.content, poster: p.user.username, timestamp: p.created_at}}, method: :get %>
-        <p><%= p.content.html_safe %></p>
-        <% if p.created_at == p.updated_at%>
-            <div style="font-size: x-small; text-align: right;">Posted <%= display_full_date_time(p.created_at) %></div>
-        <% elsif p.created_at != p.updated_at %>
-            <div style="font-size: x-small; text-align: right;">Edited <%= display_full_date_time(p.updated_at) %></div>
-        <% end %>
+                <div class="row">
+                    <div class="left">
+                        <%= p.user.display_avatar %>
+                        <%= link_to p.poster_username, user_path(p.poster_username), :class => 'post_link' %><br>
+                        Posts: <%= p.user.posts.count %><br>
+                        Karma: <%= p.user.karma %>
+                    </div>
+                    <div class="middle">
+                    <div class="button_align_right">
+                        <% if p.user == current_user || admin? %>
+                            <%= link_to "Edit", edit_board_thread_post_path(p.board_thread, p), :class => 'post_link', :method => :get  %> | <%= link_to "Delete", board_thread_post_path(p.board_thread, p), :class => 'post_link', :method => :delete %> | 
+                        <% end %>
+                        <%= link_to "Quote", new_board_thread_post_path(p.board_thread, p, params: {quote: {content: line_breaks(p.content), poster: p.user.username, timestamp: p.created_at}}), :class => 'post_link'%>
+                    </div>
+                    <p><%= line_breaks(p.content) %></p>
+                    <% if p.created_at == p.updated_at%>
+                        <div class="timestamp">Posted <%= display_full_date_time(p.created_at) %></div>
+                    <% elsif p.created_at != p.updated_at %>
+                        <div class="timestamp">Edited <%= display_full_date_time(p.updated_at) %></div>
+                    <% end %>
+                    </div>
+                </div>
+            <% end %>
+            </div>
         </div>
     </div>
-
-
-
+</div>
+<div class="innerwrapper">
+    <div class="forum">
+        <div class="forum_bod">
+            <div class="quick_reply_header">
+                Quick Reply
+            </div>
+            <center>
+            <%= form_for @board_thread.posts.build, :html => {class: 'forms'}, :url => board_thread_posts_path(@board_thread) do |f| %>
+                <%= f.text_area :content, cols: 180, rows: 10, :class => 'reply_field' %>
+                <%= f.hidden_field :user_id, value: current_user.id %>
+                <%= f.hidden_field :board_thread_id, value: @board_thread.id %><br>
+                <%= f.submit "Quick Reply", :class => '.centered_button'%>
             <% end %>
+            </center>
             <div class="centered_button"><%= button_to "New Post", new_board_thread_post_path(board_thread_id: params[:id]), :method => :get %></div>
         </div>
     </div>

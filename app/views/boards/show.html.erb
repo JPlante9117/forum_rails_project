@@ -8,7 +8,7 @@
             </div>
             <% @board_threads.each do |t| %>
                 <div class="forum_tile">
-                    <%= link_to friendly_title(t), board_thread_path(t), :class => "board_title" %>
+                    <%= "[LOCKED]" if t.locked %><%= link_to friendly_title(t), board_thread_path(t), :class => "board_title" %>
                     <div class="thread_information">
                         <%= last_post(t).html_safe%>
                         <br><br>

@@ -1,15 +1,13 @@
 module AdminHelper
     def category_errors_display(category)
         if category.errors.any?
-            errors = category.errors.full_messages.map {|err| tag.li err}
-            error_msg("Category", errors)
+            info = tag.div category.errors.full_messages.join("<br>").html_safe, class: "errors_list"  
         end
     end
 
-    def board_errors_display(board)
-        if board.errors.any?
-            errors = board.errors.full_messages.map {|err| tag.li err}
-            error_msg("Board", errors)
+    def board_errors_display(board, field)
+        if board.errors["#{field}"].any?
+            info = tag.div board.errors.full_messages_for("#{field}").join("<br>").html_safe, class: "errors_list"  
         end
     end
 

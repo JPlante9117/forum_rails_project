@@ -1,6 +1,6 @@
-<div class="user_form_container">
+<div class="form_container">
     <h1>Login</h1>
-    <%= form_tag '/session', :html => {:class => "user_forms"}, method: :post do %>
+    <%= form_tag '/session', :html => {:class => "forms"}, method: :post do %>
         <h2>Username</h2>
         <div class="form_input_bg"><%= text_field_tag :username, "", class: "form_input_field", :placeholder => "Username" %></div>
 

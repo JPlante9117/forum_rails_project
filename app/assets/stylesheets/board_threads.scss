@@ -2,13 +2,65 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 .container {
-    display: table;
 }
 
 .row  {
-    display: table-row;
+    position: relative;
+    padding: 20px;
+    margin:20px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 10px;
+    width: 95%;
 }
 
 .left, .right, .middle {
     display: table-cell;
 }
+
+.left {
+    border-right: dotted rgb(170, 170, 170) 5px;
+    font-size: small;
+    text-align: center;
+    width: 150px;
+}
+
+.middle {
+    font-size: medium;
+    width: 91%;
+    padding: 10px;
+}
+
+.post_link {
+    text-decoration: none;
+    color: blue;
+    font-weight: bolder;
+    padding-left: 3px;
+    padding-right: 3px;
+}
+
+.timestamp {
+    font-size: x-small;
+    text-align: right;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    padding: 10px;
+}
+
+.locking {
+    font-size: medium;
+    text-align: right;
+}
+
+.lock_link {
+    text-decoration: none;
+    font-weight: bolder;
+    color: white;
+}
+
+.button_align_right {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 10px;
+  }

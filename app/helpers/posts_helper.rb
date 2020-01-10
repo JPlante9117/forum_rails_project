@@ -10,4 +10,8 @@ module PostsHelper
         HTML
         quote.split.join(" ")
     end
+
+    def post_errors(post)
+        info = tag.div post.errors.full_messages.join("<br>").html_safe, class: "errors_list"  
+    end
 end

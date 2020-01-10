@@ -3,4 +3,9 @@ class Post < ApplicationRecord
 
     belongs_to :user
     belongs_to :board_thread
+
+    def poster_username
+        self.user.username
+    end
+
 end

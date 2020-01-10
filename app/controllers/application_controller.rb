@@ -22,7 +22,7 @@ class ApplicationController < ActionController::Base
     def redirect_if_logged_out
         if !logged_in?
             flash.notice = "To access this feature, please sign in"
-            redirect_back(fallback_location: root_path)
+            redirect_back(fallback_location: root_path) and return
         end
     end
 
@@ -49,6 +49,7 @@ class ApplicationController < ActionController::Base
     
     def match_user_or_admin(user)
         unless user == current_user || admin?
+            flash.notice = "You are not authorized for this action"
             redirect_back(fallback_location: root_path)
         end
     end

@@ -1,10 +1,10 @@
+    <h2 class="indent">Username</h2>
     <%= errors(user, "username") %><br>
-    <h2>Username</h2>
     <div class="form_input_bg"><span class="tooltiptext"><%= requirements("username") %></span><%= user_form.text_field :username, size: 50, :class => "form_input_field", :placeholder => "Username" %></div>
-    <h2>Password</h2>
+    <h2 class="indent">Password</h2>
     <%= errors(user, "password") %><br>
     <div class="form_input_bg"><span class="tooltiptext"><%= requirements("password") %></span><%= user_form.password_field :password, size: 50, :class => "form_input_field", :placeholder => "Password" %></div>
-    <h2>Confirm Password</h2>
+    <h2 class="indent">Confirm Password</h2>
     <%= errors(user, "password_confirmation") %><br>
     <div class="form_input_bg"><%= user_form.password_field :password_confirmation, size: 50, :class => "form_input_field", :placeholder => "Confirm Password" %></div>
     <br><br>

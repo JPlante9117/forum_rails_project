@@ -1,0 +1,7 @@
+<%= form_for [:admin, category], :html => {class: 'form'} do |cat_form| %>
+    <%= category_errors_display(category) %>
+    <%= cat_form.text_field :title, :class => 'admin_fields', :placeholder => 'Input Unique Category Title' %>
+
+    <%= cat_form.submit %>
+
+<% end %>

@@ -1,5 +1,6 @@
 class User < ApplicationRecord
     scope :admin, -> { where(admin: true)}
+    scope :regular_user, -> {where(admin: false)}
     has_secure_password
     PASSWORD_REQUIREMENTS = /\A (?=.*\d) (?=.*([A-Z])) (?=.*([a-z])) (?=.*[[:^alnum:]]) (?=.{8,})/x
     CONTAINS_NUM = /\A (?=.*\d) /x
@@ -26,5 +27,12 @@ class User < ApplicationRecord
 
     def slug
         self.username.gsub(" ", "-")
+    end
+
+    def display_avatar
+        avatar = <<-HTML
+        <img src="#{self.avatar_url}", alt="avatar", class="avatar">
+        HTML
+        avatar.html_safe
     end
 end

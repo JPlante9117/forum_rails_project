@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_09_181939) do
+ActiveRecord::Schema.define(version: 2020_01_10_204522) do
 
   create_table "board_threads", force: :cascade do |t|
     t.string "title"
@@ -49,6 +49,7 @@ ActiveRecord::Schema.define(version: 2020_01_09_181939) do
     t.integer "karma", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.text "avatar_url", default: "https://eitrawmaterials.eu/wp-content/uploads/2016/09/empty-avatar.jpg"
   end
 
 end

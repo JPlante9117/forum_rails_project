@@ -1,5 +1,23 @@
-<ul>
-<% @users.each do |u| %>
-    <li><%= link_to u.username, user_path(u.slug) %></li>
-<% end %>
-</ul>
+<div class="innerwrapper">
+    <div class="forum">
+        <div class="forum_bod">
+            <div class="cat_header">
+                Admins
+            </div>
+            <% @admins.each do |admin| %>
+                <div class="forum_tile">
+                    <%= link_to admin.username, user_path(admin.slug), :class => 'user_name' %>
+                </div>
+            <% end %>
+            <div class="cat_header">
+                Members
+            </div>
+            <% @users.each do |u| %>
+                <div class="forum_tile">
+                    <%= link_to u.username, user_path(u.slug), :class => 'user_name' %>
+                </div>
+            <% end %>
+        
+        </div>
+    </div>
+</div>

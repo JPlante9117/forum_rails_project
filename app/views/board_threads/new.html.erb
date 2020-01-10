@@ -1,13 +1,32 @@
-<%= form_for @board_thread do |f| %>
-    <%= f.label :title %><br>
-    <%= f.text_field :title %>
-<br><br>
-    <%= f.fields_for :posts do |pf| %>
-        <%= pf.label :content %><br>
-        <%= pf.text_area :content, rows: 10, cols: 60 %>
-        <%= pf.hidden_field :user_id, value: current_user.id %>
-    <% end %>
-<br>
-    <%= f.hidden_field :board_id, value: @board.id %>
-    <%= f.submit "Create Thread" %>
-<% end %>
+<div class="innerwrapper">
+  <div class="forum">
+        <div class="forum_bod">
+            <div class="nav_path">PATH: <%= link_to @board.category.title, boards_path, :class => 'links' %> >> <%= link_to @board.title, board_path(@board), :class => 'links' %> >> <%= link_to 'New Thread', new_board_thread_path(board_id: @board), :class => 'links' %></div>
+            <div class="main_header">
+               New Thread
+            </div>
+
+            <%= form_for @board_thread, :html => {class: 'form'} do |f| %>
+                <br>
+                <div class="indent">
+                    <%= thread_errors_display(@board_thread, :title) %>
+                </div>
+                <div class="form_input_bg">
+                    <%= f.text_field :title, :placeholder => "Title", :class => 'form_input_field', :style => 'font-size: xx-large;' %>
+                </div>
+                <br>
+                <%= f.fields_for :posts do |pf| %>
+                    <%= pf.label 'Post', :class => 'indent' %>
+                    <div class="indent">
+                        <%= thread_errors_display(@board_thread, "posts.content") %>
+                    </div>
+                    <%= pf.text_area :content, rows: 10, cols: 60, :class => 'reply_field', :placeholder => 'Initial Post' %>
+                    <%= pf.hidden_field :user_id, value: current_user.id %>
+                <% end %>
+                <%= f.hidden_field :board_id, value: @board.id %>
+                <%= f.submit "Create Thread" %>
+            <% end %>
+            
+        </div>
+    </div>
+</div>

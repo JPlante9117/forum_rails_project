@@ -26,4 +26,25 @@ module ApplicationHelper
             end
         end
     end
+
+    def nav_category(location)
+        if location.class == BoardThread
+            location.board.category.title
+        elsif location.class == Board
+            location.category.title
+        end
+    end
+
+    def nav_board(location)
+        if location.class == BoardThread
+            location.board.title
+        elsif location.class == Board
+            location.title
+        end
+    end
+
+    def line_breaks(text)
+        text.to_s.gsub(/\r\n/, "<br>").html_safe
+    end
+
 end

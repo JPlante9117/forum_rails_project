@@ -40,7 +40,8 @@ class UsersController < ApplicationController
     end
 
     def index
-        @users = User.all
+        @admins = User.admin
+        @users = User.regular_user
     end
 
     def destroy
@@ -73,7 +74,7 @@ class UsersController < ApplicationController
     private
 
     def user_params
-        params.require(:user).permit(:username, :password, :password_confirmation, :admin, :karma)
+        params.require(:user).permit(:username, :password, :password_confirmation, :admin, :karma, :avatar_url)
     end
 
     def primary_admin
