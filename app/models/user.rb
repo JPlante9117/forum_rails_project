@@ -35,4 +35,11 @@ class User < ApplicationRecord
         HTML
         avatar.html_safe
     end
+
+    def display_mini_avatar
+        avatar = <<-HTML
+        <img src="#{self.avatar_url}", alt="avatar", class="avatar_mini">
+        HTML
+        avatar.html_safe
+    end
 end

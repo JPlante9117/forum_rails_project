@@ -22,6 +22,10 @@
         <% if admin? %>
           <%= link_to "Admin", '/admin' %>
         <% end %>
+        <div class="position_right">
+          <%= link_to "Hello, #{current_user.username}!", user_path(current_user.slug), :style => "pointer-events: none;" %>
+          <%= current_user.display_mini_avatar %>
+        </div>
       <% else %>
         <%= link_to "Login", "/login" %>
         <%= link_to "Register", "/signup" %>

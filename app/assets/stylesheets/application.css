@@ -30,14 +30,14 @@
     background-color: #333;
     position: fixed;
     top: 0;
-    width: 100%; 
+    width: 100%;
+    z-index: 9;
   }
 
   .navbar a {
     float: left;
     display: block;
     color: #f2f2f2;
-    text-align: center;
     padding: 14px 16px;
     text-decoration: none;
   }
@@ -45,6 +45,14 @@
   .navbar a:hover {
     background: #ddd;
     color: black;
+  }
+
+  .navbar .position_right {
+    position: absolute;
+    right: 0;
+    margin-right: 10px;
+    margin-top: 3px;
+    color: white;
   }
 
   body{
@@ -186,5 +194,12 @@ div.flash_error {
   vertical-align: middle;
   width: 100px;
   height: 100px;
+  border-radius: 50%;
+}
+
+.avatar_mini {
+  vertical-align: middle;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
 }
