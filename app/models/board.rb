@@ -8,5 +8,5 @@ class Board < ApplicationRecord
     has_many :board_threads, dependent: :destroy
     has_many :posts, through: :board_threads
     belongs_to :category
-
+    
 end

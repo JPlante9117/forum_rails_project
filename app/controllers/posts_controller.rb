@@ -7,6 +7,7 @@ class PostsController < ApplicationController
     end
 
     def create
+        protect_post_user_edits
         @board_thread = BoardThread.find_by_id(params[:board_thread_id])
         @post = @board_thread.posts.build(post_params)
         if @post.save
@@ -23,6 +24,7 @@ class PostsController < ApplicationController
     end
 
     def update
+        protect_post_user_edits
         post = Post.find_by_id(params[:post][:post_id])
         if post.update(post_params)
             flash.notice = "Post successfully updated!"
@@ -49,6 +51,12 @@ class PostsController < ApplicationController
     def redirect_if_locked
         if @board_thread.locked
             redirect_back(fallback_location: board_thread_path(@board_thread))
+        end
+    end
+
+    def protect_post_user_edits
+        if params[:post][:user_id] != current_user.id
+            params[:post][:user_id] = current_user.id
         end
     end
 

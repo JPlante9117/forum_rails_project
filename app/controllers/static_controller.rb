@@ -6,5 +6,6 @@ class StaticController < ApplicationController
     end
 
     def rules
+        
     end
 end
