@@ -24,7 +24,7 @@ class PostsController < ApplicationController
     end
 
     def update
-        protect_post_user_edits
+        remove_user_params_from_edit
         post = Post.find_by_id(params[:post][:post_id])
         if post.update(post_params)
             flash.notice = "Post successfully updated!"
@@ -58,6 +58,10 @@ class PostsController < ApplicationController
         if params[:post][:user_id] != current_user.id
             params[:post][:user_id] = current_user.id
         end
+    end
+    
+    def remove_user_params_from_edit
+        params[:post].delete :user_id
     end
 
 end

@@ -2,12 +2,14 @@ class BoardThreadsController < ApplicationController
     before_action :redirect_if_logged_out
     def new
         @board = Board.find_by_id(params[:board_id])
+        session[:board_id] = @board.id
         @board_thread = @board.board_threads.build
         @board_thread.posts.build
     end
 
     def create
-        @board = Board.find_by_id(params[:board_thread][:board_id])
+        @board = Board.find_by_id(session[:board_id])
+        session.delete(:board_id)
         @board_thread = @board.board_threads.build(board_thread_params)
         if @board_thread.save
             flash.notice = "Thread successfully created!"
