@@ -1,11 +1,6 @@
-<div class="innerwrapper">
-  <div class="forum">
-        <div class="forum_bod">
-            <div class="nav_path">PATH: <%= link_to 'ADMIN PANEL', admin_path, :class => 'links' %> >> <%= link_to 'CATEGORIES CONTROLLER', admin_categories_path, :class => 'links' %> >> <%= link_to 'NEW CATEGORY', new_admin_category_path, :class => 'links'%></div>
-            <div class="main_header">
-                Create New Category
-            </div>
-            <%= render partial: 'form', locals: {category: @category} %>
-        </div>
-    </div>
+
+<div class="nav_path">PATH: <%= link_to 'ADMIN PANEL', admin_path, :class => 'links' %> >> <%= link_to 'CATEGORIES CONTROLLER', admin_categories_path, :class => 'links' %> >> <%= link_to 'NEW CATEGORY', new_admin_category_path, :class => 'links'%></div>
+<div class="main_header">
+    Create New Category
 </div>
+<%= render partial: 'form', locals: {category: @category} %>

@@ -1,4 +1,4 @@
-<div class="form_container">
+
     <h1>Login</h1>
     <%= form_tag '/session', :html => {:class => "forms"}, method: :post do %>
         <h2>Username</h2>
@@ -9,5 +9,4 @@
 
         <%= submit_tag "Login" %>
     <% end %>
-    <%= button_to "Signup with GitHub", '/auth/github' %>
-</div>
+    <%= button_to "Login with GitHub", '/auth/github' %>

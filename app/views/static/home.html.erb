@@ -1,1 +1,6 @@
-Welcome <%= current_user.username if current_user%>
+<div class="cat_header">
+    <%= @welcome.title %>
+</div>
+<div class="forum_tile">
+    <%= line_breaks(@welcome.content) %>
+</div>

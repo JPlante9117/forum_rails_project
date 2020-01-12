@@ -1,15 +1,14 @@
-<div class="form_container">
-    <%= form_for @user, :html => {:class => "forms"} do |user_form| %>
-        <%= render partial: "users/form", locals: {user: @user, user_form: user_form} %>
-        <h2 class="indent">Avatar URL</h2>
-        <div class="form_input_bg">
-            <%= user_form.text_field :avatar_url, :class => "form_input_field" %>
-        </div>
-        <% if admin? && current_user != @user%>
-            <%= user_form.label "Administrator?" %>
-            <%= user_form.check_box :admin %>
-        <% end %>
-        <%= user_form.hidden_field :slug, :value => params[:slug] %><br><br>
-        <%= user_form.submit "Update Profile" %>
+
+<%= form_for @user, :html => {:class => "forms"} do |user_form| %>
+    <%= render partial: "users/form", locals: {user: @user, user_form: user_form} %>
+    <h2 class="indent">Avatar URL</h2>
+    <div class="form_input_bg">
+        <%= user_form.text_field :avatar_url, :class => "form_input_field" %>
+    </div>
+    <% if admin? && current_user != @user%>
+        <%= user_form.label "Administrator?" %>
+        <%= user_form.check_box :admin %>
     <% end %>
-</div>
+    <%= user_form.hidden_field :slug, :value => params[:slug] %><br><br>
+    <%= user_form.submit "Update Profile" %>
+<% end %>

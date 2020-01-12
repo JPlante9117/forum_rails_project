@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   namespace "admin" do
     resources :categories
     resources :boards
+    resources :static_pages, only: [:index, :edit, :update], param: :slug
   end
   resources :boards, only: [:index, :show]
   resources :board_threads, only: [:show, :new, :create, :destroy], :path => "threads"  do

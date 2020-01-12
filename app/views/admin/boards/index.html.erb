@@ -1,23 +1,19 @@
-<div class="innerwrapper">
-    <div class="forum">
-        <div class="forum_bod">
-            <div class="nav_path">PATH: <%= link_to 'ADMIN PANEL', admin_path, :class => 'links' %> >> <%= link_to 'BOARDS CONTROLLER', admin_boards_path, :class => 'links' %></div>
-            <div class="main_header">
-                BOARDS CONTROLLER
-            </div>
-            <% @boards.each do |b| %>
-            <div class="forum_tile">
-                <%= link_to b.title, board_path(b), :class => 'board_title' %>
-                <%= link_to "Edit", edit_admin_board_path(b), :class => 'post_link', :method => :get  %>
-                <%= link_to "Delete", admin_board_path(b), :class => 'post_link', data: {confirm: "This action is irreversible and will delete the board and all threads in this board. Are you sure this is what you want to do?"}, :method => :delete %>
-                <Br>
-                <p class='admin_desc'>Parent Category: <%= b.category.title %> :::: Number of Threads: <%= b.board_threads.count %></p>
-            </div>
-            <% end %>
-            <br>
-            <div class="forum_tile">
-                <%= link_to "Create New Board", new_admin_board_path, :class => 'board_title' %>
-            </div>
-        </div>
-    </div>
+
+<div class="nav_path">PATH: <%= link_to 'ADMIN PANEL', admin_path, :class => 'links' %> >> <%= link_to 'BOARDS CONTROLLER', admin_boards_path, :class => 'links' %></div>
+<div class="main_header">
+    BOARDS CONTROLLER
 </div>
+<% @boards.each do |b| %>
+<div class="forum_tile">
+    <%= link_to b.title, board_path(b), :class => 'board_title' %>
+    <%= link_to "Edit", edit_admin_board_path(b), :class => 'post_link', :method => :get  %>
+    <%= link_to "Delete", admin_board_path(b), :class => 'post_link', data: {confirm: "This action is irreversible and will delete the board and all threads in this board. Are you sure this is what you want to do?"}, :method => :delete %>
+    <Br>
+    <p class='admin_desc'>Parent Category: <%= b.category.title %> :::: Number of Threads: <%= b.board_threads.count %></p>
+</div>
+<% end %>
+<br>
+<div class="forum_tile">
+    <%= link_to "Create New Board", new_admin_board_path, :class => 'board_title' %>
+</div>
+

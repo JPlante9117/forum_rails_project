@@ -1,17 +1,16 @@
-<div class="innerwrapper">
-    <div class="forum">
-        <div class="forum_bod">
-            <div class="cat_header">
-                ADMIN PANEL
-            </div>
-            <div class="forum_tile">
-                <%= link_to 'Categories Controller', admin_categories_path, :class => 'board_title' %><Br>
-                <p class='admin_desc'>Contains all functions for creating, editing, and deleting categories.</p>
-            </div>
-            <div class="forum_tile">
-                <%= link_to 'Boards Controller', admin_boards_path, :class => 'board_title' %>
-                <p class='admin_desc'>Contains all functions for creating, editing, and deleting boards.</p>
-            </div>
-        </div>
-    </div>
+
+<div class="cat_header">
+    ADMIN PANEL
+</div>
+<div class="forum_tile">
+    <%= link_to 'Static Page Controller', admin_static_pages_path, :class => 'board_title' %><br>
+    <p class='admin_desc'>Contains all functions for editing the 'Welcome' and 'Rules' content.</p>
+</div>
+<div class="forum_tile">
+    <%= link_to 'Categories Controller', admin_categories_path, :class => 'board_title' %><Br>
+    <p class='admin_desc'>Contains all functions for creating, editing, and deleting categories.</p>
+</div>
+<div class="forum_tile">
+    <%= link_to 'Boards Controller', admin_boards_path, :class => 'board_title' %>
+    <p class='admin_desc'>Contains all functions for creating, editing, and deleting boards.</p>
 </div>

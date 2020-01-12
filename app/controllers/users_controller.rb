@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
     before_action :redirect_if_logged_out
     skip_before_action :redirect_if_logged_out, only: [:new, :create, :index]
+    before_action :disable_forum_style, except: [:index]
+
     def new
         redirect_if_logged_in
         @user = User.new
@@ -31,6 +33,7 @@ class UsersController < ApplicationController
         @user = User.find_by(username: deslugger(params[:user][:slug]))
         match_user_or_admin(@user)
         check_password_update
+        default_avatar_if_necessary
         if @user.update(user_params)
             flash.notice = "Profile successfully updated!"
             redirect_to user_path(@user.slug)
@@ -91,4 +94,9 @@ class UsersController < ApplicationController
             params[:user].delete(:password_confirmation)
         end
     end
+
+    def default_avatar_if_necessary
+        params[:user][:avatar_url] = "https://eitrawmaterials.eu/wp-content/uploads/2016/09/empty-avatar.jpg" if params[:user][:avatar_url].blank?
+    end
+        
 end

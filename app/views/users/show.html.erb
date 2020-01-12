@@ -1,4 +1,4 @@
-<div class="form_container">
+
 <hr>
     <h1><%= @user.username %></h1>
     <center>
@@ -15,4 +15,3 @@
 <% if @user == current_user || admin? %>
 <%= button_to "Edit Profile", edit_user_path(slug: @user.slug), :method => :get %> <%= button_to "Delete Account", user_path(@user.username), :method => :delete, data: {confirm: "You are about to delete this profile. This is NOT a reversable action. Are you sure this is what you want to do?"} %>
 <% end %>
-</div>

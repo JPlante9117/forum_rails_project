@@ -1,17 +1,12 @@
-<div class="innerwrapper">
-    <div class="forum">
-        <div class="forum_bod">
-            <% @categories.each do |c| %>
-                <div class="cat_header"><%= c.title %></div>
-                <% c.boards.order(:title).each do |b| %>
-                    <div class="forum_tile">
-                        <%= link_to b.title, board_path(b), :class => "board_title" %>
-                        <div class="description">
-                            <%= b.description %>
-                        </div>
-                    </div>
-                <% end %>
-            <% end %>
+
+<% @categories.each do |c| %>
+    <div class="cat_header"><%= c.title %></div>
+    <% c.boards.order(:title).each do |b| %>
+        <div class="forum_tile">
+            <%= link_to b.title, board_path(b), :class => "board_title" %>
+            <div class="description">
+                <%= b.description %>
+            </div>
         </div>
-    </div>
-</div>
+    <% end %>
+<% end %>

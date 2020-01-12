@@ -1,4 +1,5 @@
 class SessionsController < ApplicationController
+    before_action :disable_forum_style, only: [:new]
 
     def new
         redirect_if_logged_in

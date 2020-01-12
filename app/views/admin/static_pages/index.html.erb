@@ -1,0 +1,13 @@
+
+<div class="nav_path">PATH: <%= link_to 'ADMIN PANEL', admin_path, :class => 'links' %> >> <%= link_to 'STATIC CONTROLLER', admin_static_pages_path, :class => 'links' %></div>
+<div class="main_header">
+    STATIC CONTROLLER
+</div>
+<% @static_pages.each do |page| %>
+<div class="forum_tile">
+    <%= link_to page.title, boards_path, :class => 'board_title' %>
+    <%= link_to "Edit", edit_admin_static_page_path(page.title), :class => 'post_link', :method => :get  %>
+</div>
+<% end %>
+
+

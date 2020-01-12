@@ -1,26 +1,21 @@
-<div class="innerwrapper">
-  <div class="forum">
-      <div class="forum_bod">
-        <div class="quick_reply_header">
-          Reply
-        </div>
-        <center>
-          <%= form_for post, :html => {:class => 'form'}, :url => board_thread_posts_path(board_thread) do |pf| %>
-              <%= post_errors(post) %>
-              <% if params[:quote] %>
-                <%= pf.text_area :content, value: quoted(params[:quote]), :class => 'reply_field'%>
-              <% else %>
-                  <%= pf.text_area :content, :class => 'reply_field' %>
-              <% end %>
-              <%= pf.hidden_field :user_id, value: current_user.id %>
-              <%= pf.hidden_field :post_id, value: post.id %>
-              <br>
-              <%= pf.submit %>
-          <% end %>
-        </center>
-    </div>
-  </div>
+<div class="quick_reply_header">
+    Reply
 </div>
+<center>
+    <%= form_for post, :html => {:class => 'form'}, :url => board_thread_posts_path(board_thread) do |pf| %>
+        <%= post_errors(post) %>
+        <% if params[:quote] %>
+        <%= pf.text_area :content, value: quoted(params[:quote]), :class => 'reply_field'%>
+        <% else %>
+            <%= pf.text_area :content, :class => 'reply_field' %>
+        <% end %>
+        <%= pf.hidden_field :user_id, value: current_user.id %>
+        <%= pf.hidden_field :post_id, value: post.id %>
+        <br>
+        <%= pf.submit %>
+    <% end %>
+</center>
+
 
 <div class="innerwrapper">
     <div class="forum">

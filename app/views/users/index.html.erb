@@ -1,23 +1,18 @@
-<div class="innerwrapper">
-    <div class="forum">
-        <div class="forum_bod">
-            <div class="cat_header">
-                Admins
-            </div>
-            <% @admins.each do |admin| %>
-                <div class="forum_tile">
-                    <%= admin.display_mini_avatar %> <%= link_to admin.username, user_path(admin.slug), :class => 'user_name' %>
-                </div>
-            <% end %>
-            <div class="cat_header">
-                Members
-            </div>
-            <% @users.each do |u| %>
-                <div class="forum_tile">
-                    <%= link_to u.username, user_path(u.slug), :class => 'user_name' %>
-                </div>
-            <% end %>
-        
-        </div>
-    </div>
+
+<div class="cat_header">
+    Admins
 </div>
+<% @admins.each do |admin| %>
+    <div class="forum_tile">
+        <%= admin.display_mini_avatar %> <%= link_to admin.username, user_path(admin.slug), :class => 'user_name' %>
+    </div>
+<% end %>
+<div class="cat_header">
+    Members
+</div>
+<% @users.each do |u| %>
+    <div class="forum_tile">
+        <%= link_to u.username, user_path(u.slug), :class => 'user_name' %>
+    </div>
+<% end %>
+

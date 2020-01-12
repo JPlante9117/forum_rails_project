@@ -1,0 +1,11 @@
+<div class="nav_path">PATH: <%= link_to 'ADMIN PANEL', admin_path, :class => 'links' %> >> <%= link_to 'STATIC CONTROLLER', admin_static_pages_path, :class => 'links' %> >> <%= link_to 'EDIT STATIC', edit_admin_static_page_path(@static_page), :class => 'links'%></div>
+<div class="main_header">
+    Edit <%= @static_page.title %>
+</div>
+<%= form_for [:admin, @static_page], :html => {class: 'form'} do |static_page_form| %>
+    <%= static_page_errors_display(@static_page) %>
+    <%= static_page_form.text_field :content, :class => 'admin_fields', :placeholder => "##{@static_page.title}" %>
+
+    <%= static_page_form.submit %>
+
+<% end %>
