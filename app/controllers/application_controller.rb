@@ -27,7 +27,8 @@ class ApplicationController < ActionController::Base
     end
 
     def require_admin
-        unless current_user && current_user.admin
+        unless current_user && admin?
+            flash.notice = "You do not have access to this function."
             redirect_back(fallback_location: root_path)
         end
     end
@@ -56,5 +57,12 @@ class ApplicationController < ActionController::Base
 
     def disable_forum_style
         @non_forum = true
+    end
+
+    def check_banned_status(user)
+        if user.banned
+            reset_session
+            flash.notice = "Sorry, this account is banned and cannot be accessed."
+        end
     end
 end

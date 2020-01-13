@@ -13,6 +13,7 @@
             Total Posts: <%= t.posts.count %>
             <br><br>
         <% if admin? %>
+            <%= button_to "Move Thread", edit_board_thread_path(t), :method => :get %>
             <%= button_to "Delete Thread", board_thread_path(t), :method => :delete %>
         <% end %>
         </div>

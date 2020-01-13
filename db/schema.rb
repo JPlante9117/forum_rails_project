@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_10_204522) do
+ActiveRecord::Schema.define(version: 2020_01_11_195219) do
 
   create_table "board_threads", force: :cascade do |t|
     t.string "title"
@@ -42,6 +42,13 @@ ActiveRecord::Schema.define(version: 2020_01_10_204522) do
     t.integer "board_thread_id"
   end
 
+  create_table "static_pages", force: :cascade do |t|
+    t.text "content"
+    t.string "title"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "username"
     t.string "password_digest"
@@ -50,6 +57,7 @@ ActiveRecord::Schema.define(version: 2020_01_10_204522) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.text "avatar_url", default: "https://eitrawmaterials.eu/wp-content/uploads/2016/09/empty-avatar.jpg"
+    t.boolean "banned", default: false
   end
 
 end

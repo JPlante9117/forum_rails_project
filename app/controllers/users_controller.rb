@@ -74,6 +74,11 @@ class UsersController < ApplicationController
         redirect_to user_path(@user.slug)
     end
 
+    def banned
+        @user = User.find_by(username: deslugger(params[:user][:slug]))
+        swap_ban(@user)
+    end
+
     private
 
     def user_params
@@ -97,6 +102,14 @@ class UsersController < ApplicationController
 
     def default_avatar_if_necessary
         params[:user][:avatar_url] = "https://eitrawmaterials.eu/wp-content/uploads/2016/09/empty-avatar.jpg" if params[:user][:avatar_url].blank?
+    end
+
+    def swap_ban(user)
+        if admin? && user != current_user    
+            user.banned = !user.banned
+            user.save
+        end
+        redirect_to user_path(user.slug)
     end
         
 end

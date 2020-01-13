@@ -1,12 +1,12 @@
 <%= form_for [:admin, board], :html => {class: 'form'} do |board_form| %>
-    <h2>Board Title</h2>
+    <h2 class="indent">Board Title</h2>
     <%= board_errors_display(board, :title) %>
     <%= board_form.text_field :title, :class => 'admin_fields', :placeholder => 'Input a Unique Title'  %>
 
-    <h2>Board Description</h2>
+    <h2 class="indent">Board Description</h2>
     <%= board_form.text_area :description, :class => 'admin_textarea', :placeholder => 'Input a Board Description (OPTIONAL)' %>
 
-    <h2>Parent Category</h2>
+    <h2 class="indent">Parent Category</h2>
     <%= board_errors_display(board, :category) %>
     <%= board_form.collection_select :category_id, categories, :id, :title, {include_blank: 'Select A Category'}, :class => 'select-css' %><br><br>
     <%= board_form.submit %>

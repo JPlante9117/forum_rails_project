@@ -12,7 +12,7 @@ Rails.application.routes.draw do
     resources :static_pages, only: [:index, :edit, :update], param: :slug
   end
   resources :boards, only: [:index, :show]
-  resources :board_threads, only: [:show, :new, :create, :destroy], :path => "threads"  do
+  resources :board_threads, only: [:show, :new, :create, :edit, :update, :destroy], :path => "threads"  do
     resources :posts, except: [:update]
     patch '/posts' => 'posts#update'
   end
@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   get '/logout' => 'sessions#destroy', as: 'logout'
   get '/threads/:board_thread_id/lock' => 'board_threads#lock', as: 'lock'
   post '/karma' => 'users#karma', as: 'karma'
+  post '/ban' => 'users#banned', as: 'banned'
 
 
 end

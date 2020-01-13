@@ -20,9 +20,9 @@ class SessionsController < ApplicationController
                 u.password = SecureRandom.base64
             end
         end
-
-        session[:user_id] = user.id
         
+        session[:user_id] = user.id
+        check_banned_status(user)
         redirect_to root_path
     end
 

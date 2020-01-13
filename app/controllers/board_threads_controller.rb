@@ -19,6 +19,25 @@ class BoardThreadsController < ApplicationController
         end
     end
 
+    def edit
+        require_admin
+        @boards = Board.all
+        @board_thread = BoardThread.find_by_id(params[:id])
+        @board = @board_thread.board
+    end
+
+    def update
+        require_admin
+        @board_thread = BoardThread.find_by_id(params[:id])
+        if @board_thread.update(board_thread_params)
+            flash.notice = "Thread successfully moved!"
+            redirect_to board_thread_path(@board_thread)
+        else
+            flash.notice = "Invalid Board Selected, reverting changes."
+            redirect_to board_thread_path(@board_thread)
+        end
+    end
+
     def show
         @board_thread = BoardThread.find_by_id(params[:id])
         @posts = @board_thread.posts unless @board_thread.posts.empty?

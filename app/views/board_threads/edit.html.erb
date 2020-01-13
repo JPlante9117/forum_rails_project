@@ -1,0 +1,15 @@
+
+<div class="nav_path">PATH: <%= link_to @board.category.title, boards_path, :class => 'links' %> >> <%= link_to @board.title, board_path(@board), :class => 'links' %> >> <%= link_to 'Move Thread', edit_board_thread_path(board_id: @board), :class => 'links' %></div>
+
+<div class="main_header">
+    Move Thread
+</div>
+
+<%= form_for @board_thread, :html => {class: 'form'} do |f| %>
+    <br>
+    <div class="indent">
+        <%= thread_errors_display(@board_thread, :title) %>
+    </div>
+    <%= f.collection_select :board_id, @boards, :id, :title, {include_blank: 'Select A Board'},:class => 'select-css' %>
+    <%= f.submit "Move Thread" %>
+<% end %>
