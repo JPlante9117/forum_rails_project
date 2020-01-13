@@ -8,7 +8,7 @@ module BoardsHelper
             else
                 user = "DELETED USER"
             end
-            "Last Post By #{link_to user, user_path(user)} <br> #{display_full_date_time(post.created_at)}"
+            "Last Post By #{link_to user, user_path(user), :class => "thread_links"} <br> #{display_full_date_time(post.created_at)}"
         end
     end
 

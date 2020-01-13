@@ -1,3 +1,24 @@
 // Place all the styles related to the session controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+.signin_button, .signingit_button {
+    background-image: url('http://tinyimg.io/i/4otkq21.png');
+    border-radius: 10px;
+    width: 350px;
+    height: 43px;
+    border: none;
+    position: relative;
+    text-align: center;
+    cursor: pointer;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+}
+
+.signin_button:hover, .signingit_button:hover{
+    opacity: .6;
+}
+
+.signingit_button {
+    background-image: url('http://tinyimg.io/i/AaJZdQG.png');
+}

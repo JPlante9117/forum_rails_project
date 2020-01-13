@@ -12,7 +12,7 @@
         <%= pf.hidden_field :user_id, value: current_user.id %>
         <%= pf.hidden_field :post_id, value: post.id %>
         <br>
-        <%= pf.submit %>
+        <%= pf.submit "", :class => "#{chosen_class(post)}" %>
     <% end %>
 </center>
 
@@ -26,12 +26,12 @@
                 <%= board_thread.title %>
             </div>
            <div class="container">
-           <% board_thread.posts.each do |p| %>
+           <% board_thread.posts.reverse.each do |p| %>
                 <% if p.id %>
                 <div class="row">
                     <div class="left">
                         <%= p.user.display_avatar %>
-                        <%= link_to p.poster_username, user_path(p.poster_username) %><br>
+                        <%= link_to p.poster_username, user_path(p.poster_username), :class => "user_links" %><br>
                     </div>
                     <div class="middle">
                     <p><%= line_breaks(p.content) %></p>

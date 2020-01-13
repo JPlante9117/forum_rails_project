@@ -19,7 +19,7 @@ module ApplicationHelper
 
     def flash_message
         if flash[:notice]
-            if flash[:notice].include?("successfully")
+            if flash[:notice].include?("successful")
                 tag.div "<br>#{flash[:notice].titlecase}<br><br>".html_safe, class: "flash_success"
             else
                 tag.div "<br>#{flash[:notice].titlecase}<br><br>".html_safe, class: "flash_error"
@@ -45,6 +45,16 @@ module ApplicationHelper
 
     def line_breaks(text)
         text.to_s.gsub(/\r\n/, "<br>").html_safe
+    end
+
+    def chosen_class(object)
+        if object.persisted?
+            "update_button"
+        elsif object.class == Post
+            "reply_button"
+        else
+            "create_button"
+        end
     end
 
 end

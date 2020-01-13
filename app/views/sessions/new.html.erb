@@ -6,7 +6,10 @@
 
         <h2>Password</h2>
         <div class="form_input_bg"><%= password_field_tag :password, "", class: "form_input_field", :placeholder => "Password" %></div>
-
-        <%= submit_tag "Login" %>
+        <div class="centered_button">
+            <%= submit_tag "", :class => 'signin_button' %>
+        </div>
     <% end %>
-    <%= button_to "Login with GitHub", '/auth/github' %>
+    <div class="centered_button">
+        <%= button_to "", '/auth/github', :class => 'signingit_button' %>
+    </div>

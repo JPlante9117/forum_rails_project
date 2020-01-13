@@ -14,6 +14,8 @@
             <%= user_form.text_field :karma, :class => "form_input_field" %>
         </div>
     <% end %>
-    <%= user_form.hidden_field :slug, :value => params[:slug] %><br><br>
-    <%= user_form.submit "Update Profile" %>
+    <br>
+    <div class="centered_button">
+        <%= user_form.submit "", :class => "update_button" %>
+    </div>
 <% end %>

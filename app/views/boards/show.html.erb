@@ -13,11 +13,11 @@
             Total Posts: <%= t.posts.count %>
             <br><br>
         <% if admin? %>
-            <%= button_to "Move Thread", edit_board_thread_path(t), :method => :get %>
-            <%= button_to "Delete Thread", board_thread_path(t), :method => :delete %>
+            <%= link_to "Move Thread", edit_board_thread_path(t), :class => "thread_links" %>
+            <%= link_to "Delete Thread", board_thread_path(t), :class => "thread_links", :method => :delete %>
         <% end %>
         </div>
     </div>
 
 <% end %>
-<div class="centered_button"><%= button_to "Create New Thread", new_board_thread_path, params: {board_id: @board.id}, :method => :get %></div>
+<div class="centered_button"><%= button_to "", new_board_thread_path, params: {board_id: @board.id}, :class => "create_thread_button", :method => :get %></div>

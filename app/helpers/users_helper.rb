@@ -40,4 +40,12 @@ module UsersHelper
         requirements.html_safe
     end
 
+    def banned_text(user)
+        if user.banned
+            "Unban User"
+        else
+            "Ban User"
+        end
+    end
+
 end

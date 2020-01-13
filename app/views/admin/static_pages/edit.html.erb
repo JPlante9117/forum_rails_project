@@ -4,8 +4,8 @@
 </div>
 <%= form_for [:admin, @static_page], :html => {class: 'form'} do |static_page_form| %>
     <%= static_page_errors_display(@static_page) %>
-    <%= static_page_form.text_field :content, :class => 'admin_fields', :placeholder => "##{@static_page.title}" %>
-
-    <%= static_page_form.submit %>
-
+    <%= static_page_form.text_area :content, cols: "50", rows: "20",:class => 'admin_textarea', :placeholder => "##{@static_page.title}" %>
+    <div class ="centered_button">
+        <%= static_page_form.submit "", :class => "update_button" %>
+    </div>
 <% end %>

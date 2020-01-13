@@ -32,7 +32,7 @@
 
 .post_link {
     text-decoration: none;
-    color: blue;
+    color: steelblue;
     font-weight: bolder;
     padding-left: 3px;
     padding-right: 3px;
@@ -52,15 +52,34 @@
     text-align: right;
 }
 
-.lock_link {
-    text-decoration: none;
-    font-weight: bolder;
-    color: white;
-}
-
 .button_align_right {
     position: absolute;
     top: 0;
     right: 0;
     padding: 10px;
+  }
+
+  .quick_reply_button, .reply_button, .move_thread_button {
+    background-image: url('http://tinyimg.io/i/bYUesw2.png');
+    border-radius: 10px;
+    width: 350px;
+    height: 42px;
+    border: none;
+    position: relative;
+    text-align: center;
+    cursor: pointer;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+  }
+
+  .reply_button {
+      background-image: url('http://tinyimg.io/i/HLChSpj.png');
+  }
+
+  .move_thread_button {
+      background-image: url('http://tinyimg.io/i/kwRpUST.png');
+  }
+
+  .quick_reply_button:hover, .reply_button:hover, .move_thread_button:hover {
+      opacity: .6;
   }

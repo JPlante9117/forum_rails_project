@@ -27,10 +27,12 @@ class UsersController < ApplicationController
     def edit
         @user = User.find_by(username: deslugger(params[:slug]))
         match_user_or_admin(@user)
+        session[:slug] = @user.slug
     end
 
     def update
-        @user = User.find_by(username: deslugger(params[:user][:slug]))
+        @user = User.find_by(username: deslugger(session[:slug]))
+        session.delete(:slug)
         match_user_or_admin(@user)
         check_password_update
         default_avatar_if_necessary
@@ -44,7 +46,8 @@ class UsersController < ApplicationController
 
     def index
         @admins = User.admin
-        @users = User.regular_user
+        @users = User.regular_user.where(banned: false)
+        @banned_users = User.where(banned: true)
     end
 
     def destroy

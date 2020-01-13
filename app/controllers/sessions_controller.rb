@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-    before_action :disable_forum_style, only: [:new]
+    before_action :disable_forum_style, only: [:new, :create]
 
     def new
         redirect_if_logged_in
@@ -22,6 +22,7 @@ class SessionsController < ApplicationController
         end
         
         session[:user_id] = user.id
+        flash.notice = "You have been successfully signed in!"
         check_banned_status(user)
         redirect_to root_path
     end
@@ -29,6 +30,7 @@ class SessionsController < ApplicationController
     def destroy
         redirect_if_logged_out
         reset_session
+        flash.notice = "You have been logged out."
         redirect_to root_path
     end
 

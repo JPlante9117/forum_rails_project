@@ -8,18 +8,13 @@
     <br>
     Karma: <%= @user.karma %>
     <% if current_user != @user %>
-        <%= link_to "Add Karma", karma_path(user: {slug: @user.slug}), :method => :post %>
+        <%= link_to "Add Karma", karma_path(user: {slug: @user.slug}), :class => "user_links", :method => :post %>
     <% end %>
 
 <hr>
 <% if @user == current_user || admin? %>
-<%= button_to "Edit Profile", edit_user_path(slug: @user.slug), :method => :get %> <%= button_to "Delete Account", user_path(@user.username), :method => :delete, data: {confirm: "You are about to delete this profile. This is NOT a reversable action. Are you sure this is what you want to do?"} %>
+<%= link_to "Edit Profile", edit_user_path(slug: @user.slug), :class => "user_links" %> <%= link_to "Delete Account", user_path(@user.username), :class => "user_links", :method => :delete, data: {confirm: "You are about to delete this profile. This is NOT a reversable action. Are you sure this is what you want to do?"} %>
 <% end %>
 <% if admin? && @user != current_user%>
-    <% if @user.banned %>
-        <%= button_to "Unban User", banned_path(user: {slug: @user.slug}) %>
-    <% else %>
-        <%= button_to "Ban User", banned_path(user: {slug: @user.slug}) %>
-    <% end %>
-
+        <%= link_to banned_text(@user), banned_path(user: {slug: @user.slug}), :class => "user_links", :method => :post %>
 <% end %>

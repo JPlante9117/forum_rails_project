@@ -2,7 +2,10 @@
 <%= form_for @user, :html => {:class => "forms"} do |user_form| %>
     <h1>Sign Up</h1>
     <%= render partial: "users/form", locals: {user: @user, user_form: user_form} %>
-
-    <%= user_form.submit "Signup" %>
+    <div class="centered_button">
+        <%= user_form.submit "", :class => 'signup_button' %>
+    </div>
 <% end %>
-<%= button_to "Signup with GitHub", '/auth/github' %>
+<div class="centered_button">
+    <%= button_to "", '/auth/github', :class => 'signupgit_button' %>
+</div>

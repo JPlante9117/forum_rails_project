@@ -5,7 +5,7 @@
     <%= "[LOCKED]" if @board_thread.locked  %><%= @board_thread.title %>
     <div class='locking'>
         <% if admin? %>
-            <%= link_to lock_status(@board_thread), lock_path(@board_thread), :class => 'lock_link'%>
+                <%= link_to image_tag("#{locked_image(@board_thread)}"), lock_path(@board_thread)%>
         <% end %>
     </div>
 </div>
@@ -26,31 +26,30 @@
             <%= link_to "Quote", new_board_thread_post_path(p.board_thread, p, params: {quote: {content: line_breaks(p.content), poster: p.user.username, timestamp: p.created_at}}), :class => 'post_link'%>
         </div>
         <p><%= line_breaks(p.content) %></p>
-        <% if p.created_at == p.updated_at%>
-            <div class="timestamp">Posted <%= display_full_date_time(p.created_at) %></div>
-        <% elsif p.created_at != p.updated_at %>
-            <div class="timestamp">Edited <%= display_full_date_time(p.updated_at) %></div>
-        <% end %>
+        <div class="timestamp"><%= created_or_updated_time(p)%></div>
         </div>
     </div>
 <% end %>
 </div>
 
-<div class="innerwrapper">
-    <div class="forum">
-        <div class="forum_bod">
-            <div class="quick_reply_header">
-                Quick Reply
+<% if !@board_thread.locked %>
+    <div class="innerwrapper">
+        <div class="forum">
+            <div class="forum_bod">
+                <div class="quick_reply_header">
+                    Quick Reply
+                </div>
+                <center>
+                <%= form_for @board_thread.posts.build, :html => {class: 'forms'}, :url => board_thread_posts_path(@board_thread) do |f| %>
+                    <%= f.text_area :content, cols: 180, rows: 10, :class => 'reply_field', :placeholder => "Make a new post . . ." %>
+                    <%= f.hidden_field :user_id, value: current_user.id %>
+                    <%= f.hidden_field :board_thread_id, value: @board_thread.id %><br>
+                    <%= f.submit "", :class => 'quick_reply_button'%>
+                <% end %>
+                </center>
+                <hr>
+                <div class="centered_button"><%= button_to "", new_board_thread_post_path(board_thread_id: params[:id]), :class => "reply_button", :method => :get %></div>
             </div>
-            <center>
-            <%= form_for @board_thread.posts.build, :html => {class: 'forms'}, :url => board_thread_posts_path(@board_thread) do |f| %>
-                <%= f.text_area :content, cols: 180, rows: 10, :class => 'reply_field' %>
-                <%= f.hidden_field :user_id, value: current_user.id %>
-                <%= f.hidden_field :board_thread_id, value: @board_thread.id %><br>
-                <%= f.submit "Quick Reply", :class => '.centered_button'%>
-            <% end %>
-            </center>
-            <div class="centered_button"><%= button_to "New Post", new_board_thread_post_path(board_thread_id: params[:id]), :method => :get %></div>
         </div>
     </div>
-</div>
+<% end %>

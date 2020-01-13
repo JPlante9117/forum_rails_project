@@ -12,7 +12,18 @@
 </div>
 <% @users.each do |u| %>
     <div class="forum_tile">
-        <%= link_to u.username, user_path(u.slug), :class => 'user_name' %>
+        <%= u.display_mini_avatar %> <%= link_to u.username, user_path(u.slug), :class => 'user_name' %>
     </div>
+<% end %>
+<br>
+<% if admin? %>
+    <div class="cat_header">
+        Banned Members
+    </div>
+    <% @banned_users.each do |banned| %>
+        <div class="forum_tile">
+            <%= banned.display_mini_avatar %> <%= link_to banned.username, user_path(banned.slug), :class => 'user_name' %>
+        </div>
+    <% end %>
 <% end %>
 

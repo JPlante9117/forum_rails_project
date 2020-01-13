@@ -50,6 +50,7 @@ class PostsController < ApplicationController
 
     def redirect_if_locked
         if @board_thread.locked
+            flash.notice = "This thread is locked. New posts cannot be created."
             redirect_back(fallback_location: board_thread_path(@board_thread))
         end
     end

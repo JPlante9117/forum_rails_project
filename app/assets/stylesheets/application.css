@@ -25,6 +25,17 @@
   hr {
     border-top: 5px dotted gray;
   }
+
+  a {
+    color: rgb(84, 146, 207);
+    -webkit-transition-duration: 0.2s; /* Safari */
+    transition-duration: 0.2s;
+  }
+
+  a:hover {
+    color: rgb(47, 109, 170);
+  }
+
  .navbar {
     overflow: hidden;
     background-color: #333;
@@ -172,6 +183,7 @@ div.flash_error {
   background-repeat: no-repeat, repeat;
   background-position: right .7em top 50%, 0 0;
   background-size: .65em auto, 100%;
+  margin-left: 20px;
 }
 .select-css::-ms-expand {
   display: none;
@@ -202,4 +214,29 @@ div.flash_error {
   width: 40px;
   height: 40px;
   border-radius: 50%;
+}
+
+.update_button, .create_button, .create_thread_button {
+  background-image: url('http://tinyimg.io/i/pxgo6Ej.png');
+  border-radius: 10px;
+  width: 350px;
+  height: 42px;
+  border: none;
+  position: relative;
+  text-align: center;
+  cursor: pointer;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+}
+
+.update_button:hover, .create_button:hover, .create_thread_button:hover {
+opacity: .6;
+}
+
+.create_button {
+  background-image: url('http://tinyimg.io/i/TlQqusD.png');
+}
+
+.create_thread_button {
+  background-image: url('http://tinyimg.io/i/IOQte5S.png');
 }

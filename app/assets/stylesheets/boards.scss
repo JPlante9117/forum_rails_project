@@ -68,3 +68,10 @@ div.forum_tile {
     display: inline-block;
     border-left: solid black 1px;
 }
+
+.thread_links { 
+    text-decoration: none;
+    font-weight: 700;
+    color: rgb(84, 146, 207);
+    padding-right: 20px;
+}

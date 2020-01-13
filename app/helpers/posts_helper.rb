@@ -14,4 +14,5 @@ module PostsHelper
     def post_errors(post)
         info = tag.div post.errors.full_messages.join("<br>").html_safe, class: "errors_list"  
     end
+
 end

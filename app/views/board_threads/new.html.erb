@@ -22,5 +22,5 @@
         <%= pf.hidden_field :user_id, value: current_user.id %>
     <% end %>
     <%= f.hidden_field :board_id, value: @board.id %>
-    <%= f.submit "Create Thread" %>
+    <%= f.submit "", :class => "create_thread_button" %>
 <% end %>

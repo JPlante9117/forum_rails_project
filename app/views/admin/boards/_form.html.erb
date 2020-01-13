@@ -9,5 +9,5 @@
     <h2 class="indent">Parent Category</h2>
     <%= board_errors_display(board, :category) %>
     <%= board_form.collection_select :category_id, categories, :id, :title, {include_blank: 'Select A Category'}, :class => 'select-css' %><br><br>
-    <%= board_form.submit %>
+    <%= board_form.submit "", :class => "#{chosen_class(board)}" %>
 <% end %>

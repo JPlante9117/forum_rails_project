@@ -9,7 +9,8 @@
     <br>
     <div class="indent">
         <%= thread_errors_display(@board_thread, :title) %>
+        <h2>Change Thread Location?</h2>
+        <%= f.collection_select :board_id, @boards, :id, :title, {include_blank: 'Select A Board'},:class => 'select-css' %><br>
+        <%= f.submit "", :class => "move_thread_button" %>
     </div>
-    <%= f.collection_select :board_id, @boards, :id, :title, {include_blank: 'Select A Board'},:class => 'select-css' %>
-    <%= f.submit "Move Thread" %>
 <% end %>
