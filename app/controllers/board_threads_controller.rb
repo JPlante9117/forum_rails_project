@@ -58,6 +58,14 @@ class BoardThreadsController < ApplicationController
         swap_lock
     end
 
+    def search
+        @board_thread = BoardThread.find_by_id(params[:id])
+        user = User.find_by(username: params[:q])
+        search_query(user)
+        
+        render 'show'
+    end
+
     private
 
     def board_thread_params
@@ -75,6 +83,20 @@ class BoardThreadsController < ApplicationController
             @board_thread.save
         end
         redirect_to board_thread_path(@board_thread)
+    end
+
+    def search_query(user)
+        if user
+            flash.notice = "Showing Posts by #{user.username}."
+            @posts = Post.where("user_id = ? AND board_thread_id = ?", user.id, @board_thread.id)
+            if @posts.empty?
+                flash.notice = "#{user.username} has not posted in this thread."
+                @posts = @board_thread.posts
+            end
+        else
+            flash.notice = "No users named #{params[:q]}."
+            @posts = @board_thread.posts
+        end
     end
 
 end

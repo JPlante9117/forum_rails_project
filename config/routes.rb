@@ -24,6 +24,6 @@ Rails.application.routes.draw do
   get '/threads/:board_thread_id/lock' => 'board_threads#lock', as: 'lock'
   post '/karma' => 'users#karma', as: 'karma'
   post '/ban' => 'users#banned', as: 'banned'
-
+  post '/search' => 'board_threads#search'
 
 end

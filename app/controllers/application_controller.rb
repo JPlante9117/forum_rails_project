@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
     helper_method :logged_in?, :current_user, :require_admin, :admin?
 
     def logged_in?
-        session[:user_id] ? true : false
+        !!User.find_by(id: session[:user_id])
     end
 
     def redirect_if_logged_in

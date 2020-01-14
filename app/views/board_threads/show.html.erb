@@ -1,3 +1,16 @@
+<div class="forum_tile">
+    <%= form_tag "/search" do %>
+        <%= label_tag "Search Thread by User:", nil, :class => "post_link" %>
+        <%= text_field_tag :q, nil, :class => "search_input_field" %>
+        <%= hidden_field_tag :id, @board_thread.id %>
+        <%= submit_tag("Search") %>
+    <% end %>
+</div>
+
+
+
+
+
 
 <div class="nav_path">PATH: <%= link_to @board_thread.board.category.title, boards_path, :class => 'links' %> >> <%= link_to @board_thread.board.title, board_path(@board_thread.board), :class => 'links' %> >> <%= link_to friendly_title(@board_thread), board_thread_path(@board_thread), :class => 'links' %></div>
 
@@ -10,7 +23,7 @@
     </div>
 </div>
 <div class="container">
-<% @board_thread.posts.each do |p| %>
+<% @posts.each do |p| %>
     <div class="row">
         <div class="left">
             <%= p.user.display_avatar %>

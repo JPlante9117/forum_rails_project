@@ -83,3 +83,13 @@
   .quick_reply_button:hover, .reply_button:hover, .move_thread_button:hover {
       opacity: .6;
   }
+
+  .search_input_field {
+    background-color: rgb(228, 228, 228);
+    border-radius: 20px;
+    padding-left: 10px;
+    height: 30px;
+    position: relative;
+    display: inline-block;
+    border: none;
+}
