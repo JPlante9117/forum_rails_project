@@ -3,7 +3,7 @@
         <%= label_tag "Search Thread by User:", nil, :class => "post_link" %>
         <%= text_field_tag :q, nil, :class => "search_input_field" %>
         <%= hidden_field_tag :id, @board_thread.id %>
-        <%= submit_tag("Search") %>
+        <%= submit_tag "Search", :class => "search_button" %>
     <% end %>
 </div>
 

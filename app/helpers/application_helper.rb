@@ -19,7 +19,7 @@ module ApplicationHelper
 
     def flash_message
         if flash[:notice]
-            if flash[:notice].include?("successful")
+            if flash[:notice].include?("successful") || flash[:notice].include?("Showing")
                 tag.div "<br>#{flash[:notice].titlecase}<br><br>".html_safe, class: "flash_success"
             else
                 tag.div "<br>#{flash[:notice].titlecase}<br><br>".html_safe, class: "flash_error"

@@ -90,11 +90,13 @@ class BoardThreadsController < ApplicationController
             flash.notice = "Showing Posts by #{user.username}."
             @posts = Post.where("user_id = ? AND board_thread_id = ?", user.id, @board_thread.id)
             if @posts.empty?
-                flash.notice = "#{user.username} has not posted in this thread."
+                flash.now.notice = "#{user.username} has not posted in this thread."
                 @posts = @board_thread.posts
             end
         else
-            flash.notice = "No users named #{params[:q]}."
+            if !params[:q].blank?
+                flash.now.notice = "No users named #{params[:q]}."
+            end
             @posts = @board_thread.posts
         end
     end

@@ -93,3 +93,16 @@
     display: inline-block;
     border: none;
 }
+
+  .search_button {
+      background-color: steelblue;
+      border-radius: 10px;
+      color: white;
+      border: none;
+      -webkit-transition-duration: 0.4s; /* Safari */
+      transition-duration: 0.4s;
+  }
+
+  .search_button:hover {
+      opacity: .6;
+  }
