@@ -85,7 +85,7 @@ class UsersController < ApplicationController
     private
 
     def user_params
-        params.require(:user).permit(:username, :password, :password_confirmation, :admin, :karma, :avatar_url)
+        params.require(:user).permit(:username, :password, :password_confirmation, :karma, :avatar_url)
     end
 
     def primary_admin

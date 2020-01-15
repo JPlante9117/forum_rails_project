@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     resources :categories
     resources :boards
     resources :static_pages, only: [:index, :edit, :update], param: :slug
+    resources :users, only: [:index, :update], param: :slug
   end
   resources :boards, only: [:index, :show]
   resources :board_threads, only: [:show, :new, :create, :edit, :update, :destroy], :path => "threads"  do

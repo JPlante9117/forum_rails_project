@@ -5,10 +5,7 @@
     <div class="form_input_bg">
         <%= user_form.text_field :avatar_url, :class => "form_input_field" %>
     </div>
-    <% if admin? && current_user != @user%>
-        <h2 class="indent">Administrator?</h2>
-        <%= user_form.check_box :admin, :class => "indent" %>
-        
+    <% if admin? %>
         <h2 class="indent">Karma</h2>
         <div class="form_input_bg">
             <%= user_form.text_field :karma, :class => "form_input_field" %>

@@ -240,3 +240,16 @@ opacity: .6;
 .create_thread_button {
   background-image: url('http://tinyimg.io/i/IOQte5S.png');
 }
+
+.admin_swap_button {
+  background-color: steelblue;
+  border-radius: 10px;
+  color: white;
+  border: none;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+}
+
+.admin_swap_button:hover {
+  opacity: .6;
+}

@@ -1,0 +1,18 @@
+
+<div class="cat_header">
+    Admins
+</div>
+<% @admins.each do |admin| %>
+    <div class="forum_tile">
+        <%= admin.display_mini_avatar %> <div class='user_name'><%= admin.username %></div> <%= button_to "Demote From Admin", admin_user_path(admin.slug, user: {admin: admin.admin}), :class => "admin_swap_button", :method => :patch unless admin.id == 1 || admin == current_user %>
+    </div>
+<% end %>
+<div class="cat_header">
+    Members
+</div>
+<% @users.each do |u| %>
+    <div class="forum_tile">
+        <%= u.display_mini_avatar %> <div class='user_name'><%= u.username %></div> <%= button_to "Promote to Admin", admin_user_path(u.slug, user: {admin: u.admin}), :class => "admin_swap_button",:method => :patch %>
+    </div>
+<% end %>
+
