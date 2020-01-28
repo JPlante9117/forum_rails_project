@@ -1,5 +1,5 @@
 <div class="forum_tile">
-    <%= form_tag "/search" do %>
+    <%= form_tag board_thread_path(@board_thread), method: "GET" do %>
         <%= label_tag "Search Thread by User:", nil, :class => "post_link" %>
         <%= text_field_tag :q, nil, :class => "search_input_field" %>
         <%= hidden_field_tag :id, @board_thread.id %>

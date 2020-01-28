@@ -39,8 +39,14 @@ class BoardThreadsController < ApplicationController
     end
 
     def show
-        @board_thread = BoardThread.find_by_id(params[:id])
-        @posts = @board_thread.posts unless @board_thread.posts.empty?
+        if params[:q]
+            @board_thread = BoardThread.find_by_id(params[:id])
+            user = User.find_by(username: params[:q])
+            search_query(user)
+        else
+            @board_thread = BoardThread.find_by_id(params[:id])
+            @posts = @board_thread.posts unless @board_thread.posts.empty?
+        end
     end
 
     def destroy
@@ -56,14 +62,6 @@ class BoardThreadsController < ApplicationController
 
     def lock
         swap_lock
-    end
-
-    def search
-        @board_thread = BoardThread.find_by_id(params[:id])
-        user = User.find_by(username: params[:q])
-        search_query(user)
-        
-        render 'show'
     end
 
     private
