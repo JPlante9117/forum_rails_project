@@ -38,6 +38,12 @@ Users will have an easy time signing up and using the forum. There is both the o
 
 Users can change their avatar or username on their profile page, and are protected against empty fields with default values and error prompts.
 
+## DEMO
+
+Below is a video demonstrating the use of the application
+
+https://www.youtube.com/watch?v=Iev0SH2fgQs&t
+
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
